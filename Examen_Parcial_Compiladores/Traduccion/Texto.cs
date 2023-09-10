@@ -91,7 +91,7 @@ namespace Examen_Parcial_Compiladores.Traduccion
             else if ("VERGULILLA".Equals(lexema)) { cadena = "96"; }
             else if ("COMILLA ABRE".Equals(lexema)) { cadena = "97"; }
             else if ("COMILLA CIERRA".Equals(lexema)) { cadena = "98"; }
-            else if ("ESPACIO".Equals(lexema)) { cadena = "99"; }
+            else if ("SIGNO ESPACIO".Equals(lexema)) { cadena = "99"; }
             else if ("COMILLA SIMPLE".Equals(lexema)) { cadena = "84"; }
             else if ("FIN ARCHIVO".Equals(lexema)) { cadena = " "; }
             else if ("FIN LINEA".Equals(lexema)) { cadena = " "; }
@@ -181,7 +181,7 @@ namespace Examen_Parcial_Compiladores.Traduccion
             else if ("VERGULILLA".Equals(lexema)) { cadena = "......... ......"; }
             else if ("COMILLA ABRE".Equals(lexema)) { cadena = "......... ......."; }
             else if ("COMILLA CIERRA".Equals(lexema)) { cadena = "......... ........"; }
-            else if ("ESPACIO".Equals(lexema)) { cadena = "......... ........."; }
+            else if ("SIGNO ESPACIO".Equals(lexema)) { cadena = "......... ........."; }
             else if ("COMILLA SIMPLE".Equals(lexema)) { cadena = "........ ...."; }
             else if ("FIN ARCHIVO".Equals(lexema)) { cadena = " "; }
             else if ("FIN LINEA".Equals(lexema)) { cadena = " "; }
