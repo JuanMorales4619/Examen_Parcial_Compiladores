@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Examen_Parcial_Compiladores.AnalizadorLexico
 {
-    internal class AnalizadorTextoNumero
+    internal class AnalizadorLexicoTexto
     {
         private int numeroLineaActual = 0;
         private string contenidoLineaActual = "";
@@ -23,7 +23,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         private int posicionFinal = 0;
         private bool continuarAnalisis = false;
 
-        public AnalizadorTextoNumero()
+        public AnalizadorLexicoTexto()
         {
             CargarNuevaLinea();
         }

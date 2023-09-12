@@ -110,14 +110,14 @@ namespace Examen_Parcial_Compiladores
         {
             try
             {
-                AnalizadorTextoNumero anaLex = new AnalizadorTextoNumero();
-                string lexema = anaLex.DevolverSiguienteComponente();
+                AnalizadorLexicoTexto anaLex = new AnalizadorLexicoTexto();
+                string resultado = anaLex.DevolverSiguienteComponente();
                 do
                 {
-                    textBox2.Text = textBox2.Text + " " + Texto.TraducirTextoPunto(lexema);
-                    lexema = anaLex.DevolverSiguienteComponente();
+                    textBox2.Text = textBox2.Text + Environment.NewLine + resultado;
+                    resultado = anaLex.DevolverSiguienteComponente();
 
-                } while (!"FIN ARCHIVO".Equals(lexema));
+                } while (!"FIN ARCHIVO".Equals(resultado));
 
             }
             catch (Exception ex)
@@ -127,9 +127,9 @@ namespace Examen_Parcial_Compiladores
         }
         private void TextoNumero()
         {
-            try
+            /*try
             {
-                AnalizadorTextoNumero anaLex = new AnalizadorTextoNumero();
+                AnalizadorLexicoNumero anaLex = new AnalizadorLexicoNumero();
                 string lexema = anaLex.DevolverSiguienteComponente();
                 do
                 {
@@ -142,7 +142,7 @@ namespace Examen_Parcial_Compiladores
             catch (Exception ex)
             {
                 MessageBox.Show("Error de compilacion: " + ex);
-            }
+            }*/
         }
         private  void PuntoTexto()
         {

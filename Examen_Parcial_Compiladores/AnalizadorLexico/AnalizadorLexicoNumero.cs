@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Examen_Parcial_Compiladores.AnalizadorLexico
 {
-    internal class AnalizadorTextoNumero
+    internal class AnalizadorLexicoNumero
     {
         private int numeroLineaActual = 0;
         private string contenidoLineaActual = "";
@@ -23,7 +23,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         private int posicionFinal = 0;
         private bool continuarAnalisis = false;
 
-        public AnalizadorTextoNumero()
+        public AnalizadorLexicoNumero()
         {
             CargarNuevaLinea();
         }
@@ -251,7 +251,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             else if ("79".Equals(caracterActual)) { estadoActual = "q63"; }
             else if ('81'.Equals(caracterActual)) { estadoActual = "q64"; }
             else if ("82".Equals(caracterActual)) { estadoActual = "q65"; }
-            else if ("83".Equals(caracterActual))  { estadoActual = "q66"; }
+            else if ("83".Equals(caracterActual)) { estadoActual = "q66"; }
             else if ("85".Equals(caracterActual)) { estadoActual = "q67"; }
             else if ("86".Equals(caracterActual)) { estadoActual = "q68"; }
             else if ("87".Equals(caracterActual)) { estadoActual = "q69"; }

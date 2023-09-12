@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Examen_Parcial_Compiladores.AnalizadorLexico
 {
-    internal class AnalizadorTextoNumero
+    internal class AnalizadorLexicoPuntos
     {
         private int numeroLineaActual = 0;
         private string contenidoLineaActual = "";
@@ -23,7 +23,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         private int posicionFinal = 0;
         private bool continuarAnalisis = false;
 
-        public AnalizadorTextoNumero()
+        public AnalizadorLexicoPuntos()
         {
             CargarNuevaLinea();
         }
@@ -186,87 +186,87 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         private void ProcesarEstado0()
         {
             LeerSiguienteCaracter();
-            if ("11".Equals(caracterActual)) { estadoActual = "q1"; }
-            else if ("12".Equals(caracterActual)) { estadoActual = "q2"; }
-            else if ("13".Equals(caracterActual)) { estadoActual = "q3"; }
-            else if ("14".Equals(caracterActual)) { estadoActual = "q4"; }
-            else if ("15".Equals(caracterActual)) { estadoActual = "q5"; }
-            else if ("16".Equals(caracterActual)) { estadoActual = "q6"; }
-            else if ("17".Equals(caracterActual)) { estadoActual = "q7"; }
-            else if ("18".Equals(caracterActual)) { estadoActual = "q8"; }
-            else if ("19".Equals(caracterActual)) { estadoActual = "q9"; }
-            else if ("21".Equals(caracterActual)) { estadoActual = "q10"; }
-            else if ("22".Equals(caracterActual)) { estadoActual = "q11"; }
-            else if ("23".Equals(caracterActual)) { estadoActual = "q12"; }
-            else if ("24".Equals(caracterActual)) { estadoActual = "q13"; }
-            else if ("25".Equals(caracterActual)) { estadoActual = "q14"; }
-            else if ("27".Equals(caracterActual)) { estadoActual = "q15"; }
-            else if ("28".Equals(caracterActual)) { estadoActual = "q16"; }
-            else if ("29".Equals(caracterActual)) { estadoActual = "q17"; }
-            else if ("31".Equals(caracterActual)) { estadoActual = "q18"; }
-            else if ("32".Equals(caracterActual)) { estadoActual = "q19"; }
-            else if ("33".Equals(caracterActual)) { estadoActual = "q20"; }
-            else if ("34".Equals(caracterActual)) { estadoActual = "q21"; }
-            else if ("35".Equals(caracterActual)) { estadoActual = "q22"; }
-            else if ("36".Equals(caracterActual)) { estadoActual = "q23"; }
-            else if ("37".Equals(caracterActual)) { estadoActual = "q24"; }
-            else if ("38".Equals(caracterActual)) { estadoActual = "q25"; }
-            else if ("39".Equals(caracterActual)) { estadoActual = "q26"; }
-            else if ("26".Equals(caracterActual)) { estadoActual = "q27"; }
-            else if ("41".Equals(caracterActual)) { estadoActual = "q28"; }
-            else if ("42".Equals(caracterActual)) { estadoActual = "q29"; }
-            else if ("43".Equals(caracterActual)) { estadoActual = "q30"; }
-            else if ("44".Equals(caracterActual)) { estadoActual = "q31"; }
-            else if ("45".Equals(caracterActual)) { estadoActual = "q32"; }
-            else if ("46".Equals(caracterActual)) { estadoActual = "q33"; }
-            else if ("47".Equals(caracterActual)) { estadoActual = "q34"; }
-            else if ("48".Equals(caracterActual)) { estadoActual = "q35"; }
-            else if ("49".Equals(caracterActual)) { estadoActual = "q36"; }
-            else if ("51".Equals(caracterActual)) { estadoActual = "q37"; }
-            else if ("52".Equals(caracterActual)) { estadoActual = "q38"; }
-            else if ("53".Equals(caracterActual)) { estadoActual = "q39"; }
-            else if ("54".Equals(caracterActual)) { estadoActual = "q40"; }
-            else if ("55".Equals(caracterActual)) { estadoActual = "q41"; }
-            else if ("56".Equals(caracterActual)) { estadoActual = "q42"; }
-            else if ("57".Equals(caracterActual)) { estadoActual = "q43"; }
-            else if ("58".Equals(caracterActual)) { estadoActual = "q44"; }
-            else if ("59".Equals(caracterActual)) { estadoActual = "q45"; }
-            else if ("61".Equals(caracterActual)) { estadoActual = "q46"; }
-            else if ("62".Equals(caracterActual)) { estadoActual = "q47"; }
-            else if ("63".Equals(caracterActual)) { estadoActual = "q48"; }
-            else if ("64".Equals(caracterActual)) { estadoActual = "q49"; }
-            else if ("65".Equals(caracterActual)) { estadoActual = "q50"; }
-            else if ("66".Equals(caracterActual)) { estadoActual = "q51"; }
-            else if ("67".Equals(caracterActual)) { estadoActual = "q52"; }
-            else if ("68".Equals(caracterActual)) { estadoActual = "q53"; }
-            else if ("69".Equals(caracterActual)) { estadoActual = "q54"; }
-            else if ("71".Equals(caracterActual)) { estadoActual = "q55"; }
-            else if ("72".Equals(caracterActual)) { estadoActual = "q56"; }
-            else if ("73".Equals(caracterActual)) { estadoActual = "q57"; }
-            else if ("74".Equals(caracterActual)) { estadoActual = "q58"; }
-            else if ("75".Equals(caracterActual)) { estadoActual = "q59"; }
-            else if ("76".Equals(caracterActual)) { estadoActual = "q60"; }
-            else if ("77".Equals(caracterActual)) { estadoActual = "q61"; }
-            else if ("78".Equals(caracterActual)) { estadoActual = "q62"; }
-            else if ("79".Equals(caracterActual)) { estadoActual = "q63"; }
-            else if ('81'.Equals(caracterActual)) { estadoActual = "q64"; }
-            else if ("82".Equals(caracterActual)) { estadoActual = "q65"; }
-            else if ("83".Equals(caracterActual))  { estadoActual = "q66"; }
-            else if ("85".Equals(caracterActual)) { estadoActual = "q67"; }
-            else if ("86".Equals(caracterActual)) { estadoActual = "q68"; }
-            else if ("87".Equals(caracterActual)) { estadoActual = "q69"; }
-            else if ("88".Equals(caracterActual)) { estadoActual = "q70"; }
-            else if ("89".Equals(caracterActual)) { estadoActual = "q71"; }
-            else if ("91".Equals(caracterActual)) { estadoActual = "q72"; }
-            else if ("92".Equals(caracterActual)) { estadoActual = "q73"; }
-            else if ("93".Equals(caracterActual)) { estadoActual = "q74"; }
-            else if ("94".Equals(caracterActual)) { estadoActual = "q75"; }
-            else if ("95".Equals(caracterActual)) { estadoActual = "q76"; }
-            else if ("96".Equals(caracterActual)) { estadoActual = "q77"; }
-            else if ("97".Equals(caracterActual)) { estadoActual = "q78"; }
-            else if ("98".Equals(caracterActual)) { estadoActual = "q79"; }
-            else if ("99".Equals(caracterActual)) { estadoActual = "q80"; }
-            else if ("84".Equals(caracterActual)) { estadoActual = "q81"; }
+            if (". .".Equals(caracterActual)) { estadoActual = "q1"; }
+            else if (". ..".Equals(caracterActual)) { estadoActual = "q2"; }
+            else if (". ...".Equals(caracterActual)) { estadoActual = "q3"; }
+            else if (". ....".Equals(caracterActual)) { estadoActual = "q4"; }
+            else if (". .....".Equals(caracterActual)) { estadoActual = "q5"; }
+            else if (". ......".Equals(caracterActual)) { estadoActual = "q6"; }
+            else if (". .......".Equals(caracterActual)) { estadoActual = "q7"; }
+            else if (". ........".Equals(caracterActual)) { estadoActual = "q8"; }
+            else if (". .........".Equals(caracterActual)) { estadoActual = "q9"; }
+            else if (".. .".Equals(caracterActual)) { estadoActual = "q10"; }
+            else if (".. ..".Equals(caracterActual)) { estadoActual = "q11"; }
+            else if (".. ...".Equals(caracterActual)) { estadoActual = "q12"; }
+            else if (".. ....".Equals(caracterActual)) { estadoActual = "q13"; }
+            else if (".. .....".Equals(caracterActual)) { estadoActual = "q14"; }
+            else if (".. .......".Equals(caracterActual)) { estadoActual = "q15"; }
+            else if (".. ........".Equals(caracterActual)) { estadoActual = "q16"; }
+            else if (".. .........".Equals(caracterActual)) { estadoActual = "q17"; }
+            else if ("... .".Equals(caracterActual)) { estadoActual = "q18"; }
+            else if ("... ..".Equals(caracterActual)) { estadoActual = "q19"; }
+            else if ("... ...".Equals(caracterActual)) { estadoActual = "q20"; }
+            else if ("... ....".Equals(caracterActual)) { estadoActual = "q21"; }
+            else if ("... .....".Equals(caracterActual)) { estadoActual = "q22"; }
+            else if ("... ......".Equals(caracterActual)) { estadoActual = "q23"; }
+            else if ("... .......".Equals(caracterActual)) { estadoActual = "q24"; }
+            else if ("... ........".Equals(caracterActual)) { estadoActual = "q25"; }
+            else if ("... .........".Equals(caracterActual)) { estadoActual = "q26"; }
+            else if (".. ......".Equals(caracterActual)) { estadoActual = "q27"; }
+            else if (".... .".Equals(caracterActual)) { estadoActual = "q28"; }
+            else if (".... ..".Equals(caracterActual)) { estadoActual = "q29"; }
+            else if (".... ...".Equals(caracterActual)) { estadoActual = "q30"; }
+            else if (".... ....".Equals(caracterActual)) { estadoActual = "q31"; }
+            else if (".... .....".Equals(caracterActual)) { estadoActual = "q32"; }
+            else if (".... ......".Equals(caracterActual)) { estadoActual = "q33"; }
+            else if (".... .......".Equals(caracterActual)) { estadoActual = "q34"; }
+            else if (".... ........".Equals(caracterActual)) { estadoActual = "q35"; }
+            else if (".... .........".Equals(caracterActual)) { estadoActual = "q36"; }
+            else if ("..... .".Equals(caracterActual)) { estadoActual = "q37"; }
+            else if ("..... ..".Equals(caracterActual)) { estadoActual = "q38"; }
+            else if ("..... ...".Equals(caracterActual)) { estadoActual = "q39"; }
+            else if ("..... ....".Equals(caracterActual)) { estadoActual = "q40"; }
+            else if ("..... .....".Equals(caracterActual)) { estadoActual = "q41"; }
+            else if ("..... ......".Equals(caracterActual)) { estadoActual = "q42"; }
+            else if ("..... .......".Equals(caracterActual)) { estadoActual = "q43"; }
+            else if ("..... ........".Equals(caracterActual)) { estadoActual = "q44"; }
+            else if ("..... .........".Equals(caracterActual)) { estadoActual = "q45"; }
+            else if ("...... .".Equals(caracterActual)) { estadoActual = "q46"; }
+            else if ("...... ..".Equals(caracterActual)) { estadoActual = "q47"; }
+            else if ("...... ...".Equals(caracterActual)) { estadoActual = "q48"; }
+            else if ("...... ....".Equals(caracterActual)) { estadoActual = "q49"; }
+            else if ("...... .....".Equals(caracterActual)) { estadoActual = "q50"; }
+            else if ("...... ......".Equals(caracterActual)) { estadoActual = "q51"; }
+            else if ("...... .......".Equals(caracterActual)) { estadoActual = "q52"; }
+            else if ("...... ........".Equals(caracterActual)) { estadoActual = "q53"; }
+            else if ("...... .........".Equals(caracterActual)) { estadoActual = "q54"; }
+            else if ("....... .".Equals(caracterActual)) { estadoActual = "q55"; }
+            else if ("....... ..".Equals(caracterActual)) { estadoActual = "q56"; }
+            else if ("....... ...".Equals(caracterActual)) { estadoActual = "q57"; }
+            else if ("....... ....".Equals(caracterActual)) { estadoActual = "q58"; }
+            else if ("....... .....".Equals(caracterActual)) { estadoActual = "q59"; }
+            else if ("....... ......".Equals(caracterActual)) { estadoActual = "q60"; }
+            else if ("....... .......".Equals(caracterActual)) { estadoActual = "q61"; }
+            else if ("....... ........".Equals(caracterActual)) { estadoActual = "q62"; }
+            else if ("....... .........".Equals(caracterActual)) { estadoActual = "q63"; }
+            else if ("........ .".Equals(caracterActual)) { estadoActual = "q64"; }
+            else if ("........ ..".Equals(caracterActual)) { estadoActual = "q65"; }
+            else if ("........ ...".Equals(caracterActual))  { estadoActual = "q66"; }
+            else if ("........ .....".Equals(caracterActual)) { estadoActual = "q67"; }
+            else if ("........ ......".Equals(caracterActual)) { estadoActual = "q68"; }
+            else if ("........ .......".Equals(caracterActual)) { estadoActual = "q69"; }
+            else if ("........ ........".Equals(caracterActual)) { estadoActual = "q70"; }
+            else if ("........ .........".Equals(caracterActual)) { estadoActual = "q71"; }
+            else if ("......... .".Equals(caracterActual)) { estadoActual = "q72"; }
+            else if ("......... ..".Equals(caracterActual)) { estadoActual = "q73"; }
+            else if ("......... ...".Equals(caracterActual)) { estadoActual = "q74"; }
+            else if ("......... ....".Equals(caracterActual)) { estadoActual = "q75"; }
+            else if ("......... .....".Equals(caracterActual)) { estadoActual = "q76"; }
+            else if ("......... ......".Equals(caracterActual)) { estadoActual = "q77"; }
+            else if ("......... .......".Equals(caracterActual)) { estadoActual = "q78"; }
+            else if ("......... ........".Equals(caracterActual)) { estadoActual = "q79"; }
+            else if ("......... .........".Equals(caracterActual)) { estadoActual = "q80"; }
+            else if ("........ ....".Equals(caracterActual)) { estadoActual = "q81"; }
             else if (UtilTexto.EsFinLinea(caracterActual)){ estadoActual = "q83"; }
             else if (UtilTexto.EsFinArchivo(caracterActual)) { estadoActual = "q84"; }
             else{ estadoActual = "q82"; }
