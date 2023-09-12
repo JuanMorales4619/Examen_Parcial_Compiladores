@@ -189,5 +189,95 @@ namespace Examen_Parcial_Compiladores.Traduccion
             return cadena;
         }
 
+        public static string TraducirPuntoATexto(string lexema)
+        {
+            string cadena = "";
+            if ("LETRA A".Equals(lexema)) { cadena = ". ."; }
+            else if ("LETRA B".Equals(lexema)) { cadena = ". .."; }
+            else if ("LETRA C".Equals(lexema)) { cadena = ". ..."; }
+            else if ("LETRA D".Equals(lexema)) { cadena = ". ...."; }
+            else if ("LETRA E".Equals(lexema)) { cadena = ". ....."; }
+            else if ("LETRA F".Equals(lexema)) { cadena = ". ......"; }
+            else if ("LETRA G".Equals(lexema)) { cadena = ". ......."; }
+            else if ("LETRA H".Equals(lexema)) { cadena = ". ........"; }
+            else if ("LETRA I".Equals(lexema)) { cadena = ". ........."; }
+            else if ("LETRA J".Equals(lexema)) { cadena = ".. ."; }
+            else if ("LETRA K".Equals(lexema)) { cadena = ".. .."; }
+            else if ("LETRA L".Equals(lexema)) { cadena = ".. ..."; }
+            else if ("LETRA M".Equals(lexema)) { cadena = ".. ...."; }
+            else if ("LETRA N".Equals(lexema)) { cadena = ".. ....."; }
+            else if ("LETRA O".Equals(lexema)) { cadena = ".. ......."; }
+            else if ("LETRA P".Equals(lexema)) { cadena = ".. ........"; }
+            else if ("LETRA Q".Equals(lexema)) { cadena = ".. ........."; }
+            else if ("LETRA R".Equals(lexema)) { cadena = "... ."; }
+            else if ("LETRA S".Equals(lexema)) { cadena = "... .."; }
+            else if ("LETRA T".Equals(lexema)) { cadena = "... ..."; }
+            else if ("LETRA U".Equals(lexema)) { cadena = "... ...."; }
+            else if ("LETRA V".Equals(lexema)) { cadena = "... ....."; }
+            else if ("LETRA W".Equals(lexema)) { cadena = "... ......"; }
+            else if ("LETRA X".Equals(lexema)) { cadena = "... ......."; }
+            else if ("LETRA Y".Equals(lexema)) { cadena = "... ........"; }
+            else if ("LETRA Z".Equals(lexema)) { cadena = "... ........."; }
+            else if ("LETRA Ñ".Equals(lexema)) { cadena = ".. ......"; }
+            else if ("LETRA TILDADA A".Equals(lexema)) { cadena = ".... ."; }
+            else if ("LETRA TILDADA E".Equals(lexema)) { cadena = ".... .."; }
+            else if ("LETRA TILDADA I".Equals(lexema)) { cadena = ".... ..."; }
+            else if ("LETRA TILDADA O".Equals(lexema)) { cadena = ".... ...."; }
+            else if ("LETRA TILDADA U".Equals(lexema)) { cadena = ".... ....."; }
+            else if ("LETRA DIERISIS U".Equals(lexema)) { cadena = ".... ......"; }
+            else if ("DIGITO 0".Equals(lexema)) { cadena = ".... ......."; }
+            else if ("DIGITO 1".Equals(lexema)) { cadena = ".... ........"; }
+            else if ("DIGITO 2".Equals(lexema)) { cadena = ".... ........."; }
+            else if ("DIGITO 3".Equals(lexema)) { cadena = "..... ."; }
+            else if ("DIGITO 4".Equals(lexema)) { cadena = "..... .."; }
+            else if ("DIGITO 5".Equals(lexema)) { cadena = "..... ..."; }
+            else if ("DIGITO 6".Equals(lexema)) { cadena = "..... ...."; }
+            else if ("DIGITO 7".Equals(lexema)) { cadena = "..... ....."; }
+            else if ("DIGITO 8".Equals(lexema)) { cadena = "..... ......"; }
+            else if ("DIGITO 9".Equals(lexema)) { cadena = "..... ......."; }
+            else if ("COMA".Equals(lexema)) { cadena = "..... ........"; }
+            else if ("PUNTO Y COMA".Equals(lexema)) { cadena = "..... ........."; }
+            else if ("PUNTO".Equals(lexema)) { cadena = "...... ."; }
+            else if ("DOS PUNTOS".Equals(lexema)) { cadena = "...... .."; }
+            else if ("PARENTESIS ABRE".Equals(lexema)) { cadena = "...... ..."; }
+            else if ("PARENTESIS CIERRA".Equals(lexema)) { cadena = "...... ...."; }
+            else if ("CORCHETE ABRE".Equals(lexema)) { cadena = "...... ....."; }
+            else if ("CORCHETE CIERRA".Equals(lexema)) { cadena = "...... ......"; }
+            else if ("LLAVE ABRE".Equals(lexema)) { cadena = "...... ......."; }
+            else if ("LLAVE CIERRA".Equals(lexema)) { cadena = "...... ........"; }
+            else if ("NUMERAL".Equals(lexema)) { cadena = "...... ........."; }
+            else if ("SIGNO PESO".Equals(lexema)) { cadena = "....... ."; }
+            else if ("SIGNO AMPERSAN".Equals(lexema)) { cadena = "....... .."; }
+            else if ("SIGNO ARROBA".Equals(lexema)) { cadena = "....... ..."; }
+            else if ("SIGNO MÁS".Equals(lexema)) { cadena = "....... ...."; }
+            else if ("SIGNO MENOS".Equals(lexema)) { cadena = "....... ....."; }
+            else if ("SIGNO MULTIPLICACION".Equals(lexema)) { cadena = "....... ......"; }
+            else if ("SIGNO DIVISION".Equals(lexema)) { cadena = "....... ......."; }
+            else if ("PORCENTAJE".Equals(lexema)) { cadena = "....... ........"; }
+            else if ("SIGNO IGUAL".Equals(lexema)) { cadena = "....... ........."; }
+            else if ("BARRA INVERSA".Equals(lexema)) { cadena = "........ ."; }
+            else if ("PALO".Equals(lexema)) { cadena = "........ .."; }
+            else if ("COMILLA".Equals(lexema)) { cadena = "........ ..."; }
+            else if ("ACENTO CIRCUNFLEJO".Equals(lexema)) { cadena = "........ ....."; }
+            else if ("EXCLAMACION ABRE".Equals(lexema)) { cadena = "........ ......"; }
+            else if ("EXCLAMACION CIERRA".Equals(lexema)) { cadena = "........ ......."; }
+            else if ("SIGNO DE PREGUNTA ABRE".Equals(lexema)) { cadena = "........ ........"; }
+            else if ("SIGNO DE PREGUNTA CIERRA".Equals(lexema)) { cadena = "........ ........."; }
+            else if ("GUION BAJO".Equals(lexema)) { cadena = "......... ."; }
+            else if ("MAYOR QUE".Equals(lexema)) { cadena = "......... .."; }
+            else if ("MENOR QUE".Equals(lexema)) { cadena = "......... ..."; }
+            else if ("SUPERINDICE A".Equals(lexema)) { cadena = "......... ...."; }
+            else if ("SUPERINDICE O".Equals(lexema)) { cadena = "......... ....."; }
+            else if ("VERGULILLA".Equals(lexema)) { cadena = "......... ......"; }
+            else if ("COMILLA ABRE".Equals(lexema)) { cadena = "......... ......."; }
+            else if ("COMILLA CIERRA".Equals(lexema)) { cadena = "......... ........"; }
+            else if ("SIGNO ESPACIO".Equals(lexema)) { cadena = "......... ........."; }
+            else if ("COMILLA SIMPLE".Equals(lexema)) { cadena = "........ ...."; }
+            else if ("FIN ARCHIVO".Equals(lexema)) { cadena = " "; }
+            else if ("FIN LINEA".Equals(lexema)) { cadena = " "; }
+            else { throw new Exception("No se reconoce el caracter"); }
+            return cadena;
+        }
+
     }
 }
