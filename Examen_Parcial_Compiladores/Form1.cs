@@ -108,16 +108,18 @@ namespace Examen_Parcial_Compiladores
         }
         private void TextoPunto()
         {
+            textBox2.Text = "";
             try
             {
-                AnalizadorLexicoTexto anaLex = new AnalizadorLexicoTexto();
-                string resultado = anaLex.DevolverSiguienteComponente();
+                AnalizadorTextoNumero anaLex = new AnalizadorTextoNumero();
+                string lexema = anaLex.DevolverSiguienteComponente();
+                textBox2.Text = textBox2.Text + lexema + Environment.NewLine;
                 do
                 {
-                    textBox2.Text = textBox2.Text + Environment.NewLine + resultado;
-                    resultado = anaLex.DevolverSiguienteComponente();
+                    lexema = anaLex.DevolverSiguienteComponente();
+                    textBox2.Text = textBox2.Text + " " + lexema + Environment.NewLine;//Texto.TraducirTextoPunto(lexema);
 
-                } while (!"FIN ARCHIVO".Equals(resultado));
+                } while (!lexema.Contains("FIN ARCHIVO"));
 
             }
             catch (Exception ex)
@@ -127,37 +129,107 @@ namespace Examen_Parcial_Compiladores
         }
         private void TextoNumero()
         {
-            /*try
+            textBox2.Text = "";
+            try
+            {
+                AnalizadorTextoNumero anaLex = new AnalizadorTextoNumero();
+                string lexema = anaLex.DevolverSiguienteComponente();
+                textBox2.Text = textBox2.Text + lexema + Environment.NewLine;
+                do
+                {
+                    lexema = anaLex.DevolverSiguienteComponente();
+                    textBox2.Text = textBox2.Text + " " + lexema + Environment.NewLine;//Texto.TraducirTextoPunto(lexema);
+
+                } while (!lexema.Contains("FIN ARCHIVO"));
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error de compilacion: " + ex);
+            }
+        }
+        private  void PuntoTexto()
+        {
+            textBox2.Text = "";
+            try
+            {
+                AnalizadorLexicoPunto anaLex = new AnalizadorLexicoPunto();
+                string lexema = anaLex.DevolverSiguienteComponente();
+                do
+                {
+                    textBox2.Text = textBox2.Text + " " + lexema + Environment.NewLine;
+                    lexema = anaLex.DevolverSiguienteComponente();
+
+                } while (!lexema.Contains("FIN ARCHIVO"));
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error de compilacion: " + ex);
+            }
+
+        }
+        private  void PuntoNumero()
+        {
+            textBox2.Text = "";
+            try
+            {
+                AnalizadorLexicoPunto anaLex = new AnalizadorLexicoPunto();
+                string lexema = anaLex.DevolverSiguienteComponente();
+                do
+                {
+                    textBox2.Text = textBox2.Text + " " + lexema + Environment.NewLine;
+                    lexema = anaLex.DevolverSiguienteComponente();
+
+                } while (!lexema.Contains("FIN ARCHIVO"));
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error de compilacion: " + ex);
+            }
+
+        }
+        private  void NumeroTexto()
+        {
+            textBox2.Text = "";
+            try
             {
                 AnalizadorLexicoNumero anaLex = new AnalizadorLexicoNumero();
                 string lexema = anaLex.DevolverSiguienteComponente();
                 do
                 {
-                    textBox2.Text = textBox2.Text +" "+ Texto.TraducirTextoNumero(lexema);
+                    textBox2.Text = textBox2.Text + " " + lexema;
                     lexema = anaLex.DevolverSiguienteComponente();
-                    
-                } while (!"FIN ARCHIVO".Equals(lexema));
-                
+
+                } while (!lexema.Contains("FIN ARCHIVO"));
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error de compilacion: " + ex);
-            }*/
-        }
-        private  void PuntoTexto()
-        {
-
-        }
-        private  void PuntoNumero()
-        {
-
-        }
-        private  void NumeroTexto()
-        {
+            }
 
         }
         private  void NumeroPunto()
         {
+            textBox2.Text = "";
+            try
+            {
+                AnalizadorLexicoNumero anaLex = new AnalizadorLexicoNumero();
+                string lexema = anaLex.DevolverSiguienteComponente();
+                do
+                {
+                    textBox2.Text = textBox2.Text + " " + lexema + Environment.NewLine;
+                    lexema = anaLex.DevolverSiguienteComponente();
+
+                } while (!lexema.Contains("FIN ARCHIVO"));
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error de compilacion: " + ex);
+            }
 
         }
     }

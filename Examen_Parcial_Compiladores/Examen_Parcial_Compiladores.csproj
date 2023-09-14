@@ -46,7 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnalizadorLexico\AnalizadorLexicoTexto.cs" />
+    <Compile Include="AnalizadorLexico\AnalizadorLexicoNumero.cs" />
+    <Compile Include="AnalizadorLexico\AnalizadorLexicoPunto.cs" />
+    <Compile Include="AnalizadorLexico\AnalizadorTextoNumero.cs" />
     <Compile Include="Cache\DataCache.cs" />
     <Compile Include="Cache\Linea.cs" />
     <Compile Include="Form1.cs">
