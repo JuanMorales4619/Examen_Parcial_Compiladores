@@ -310,7 +310,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
 
         private void ProcesarEstado996()
         {
-            if(" ".Equals(caracterActual)) { estadoActual = "q995"; }
+            if (" ".Equals(caracterActual)) { estadoActual = "q995"; }
             else
             {
                 throw new Exception("Separacion entre caracteres invalida");
@@ -320,11 +320,13 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         private void ProcesarEstado995()
         {
             LeerSiguienteCaracter();
-            if (" ".Equals(caracterActual)) { throw new Exception("Separacion entre caracteres invalida"); }
-            else
-            {
+            if (!" ".Equals(caracterActual)) {
                 DevolverPuntero();
                 estadoActual = "q0";
+            }
+            else
+            {
+                throw new Exception("Separacion entre caracteres invalida");
             }
         }
 
@@ -558,73 +560,144 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado20()
         {
-            categoria = "LETRA A";
-            //Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA A";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
         private void ProcesarEstado21()
         {
-            categoria = "LETRA B";
-            //Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA B";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
         private void ProcesarEstado22()
         {
-            categoria = "LETRA C";
-            //Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA C";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado23()
         {
-            categoria = "LETRA D";
-            //Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA D";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado24()
         {
-            categoria = "LETRA E";
-            //Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA E";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado25()
         {
-            categoria = "LETRA F";
-            //Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA F";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado26()
         {
-            categoria = "LETRA G";
-            //Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA G";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado27()
         {
-            categoria = "LETRA H";
-            //Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA H";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado28()
         {
-            categoria = "LETRA I";
-            //Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
-
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA I";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado29()
@@ -749,73 +822,145 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado39()
         {
-            categoria = "LETRA J";
-            //();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA J";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado40()
         {
-            categoria = "LETRA K";
-            //Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA K";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado41()
         {
-            categoria = "LETRA L";
-            //Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA L";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
         private void ProcesarEstado42()
         {
-            categoria = "LETRA M";
-           // Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA M";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado43()
         {
-            categoria = "LETRA N";
-          //  Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA N";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado44()
         {
-            categoria = "LETRA Ñ";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA Ñ";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado45()
         {
-            categoria = "LETRA O";
-          //  Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA O";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado46()
         {
-            categoria = "LETRA P";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA P";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado47()
         {
-            categoria = "LETRA Q";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA Q";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado48()
@@ -939,73 +1084,145 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado58()
         {
-            categoria = "LETRA R";
-           // Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA R";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado59()
         {
-            categoria = "LETRA S";
-           // Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA S";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado60()
         {
-            categoria = "LETRA T";
-           // Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA T";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado61()
         {
-            categoria = "LETRA U";
-           // Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA U";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
         private void ProcesarEstado62()
         {
-            categoria = "LETRA V";
-           // Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA V";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado63()
         {
-            categoria = "LETRA W";
-          //  Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA W";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado64()
         {
-            categoria = "LETRA X";
-          //  Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA X";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado65()
         {
-            categoria = "LETRA Y";
-           // Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA Y";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado66()
         {
-            categoria = "LETRA Z";
-           // Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA Z";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado67()
@@ -1130,85 +1347,146 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado77()
         {
-            categoria = "LETRA TILDADA A";
-          //  Concatenar();
-            //  LeerSiguienteCaracter();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
-
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA TILDADA A";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado78()
         {
-            categoria = "LETRA TILDADA E";
-        //    Concatenar();
-            //  LeerSiguienteCaracter();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA TILDADA E";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
 
         }
         private void ProcesarEstado79()
         {
-            categoria = "LETRA TILDADA I";
-        //    Concatenar();
-            //  LeerSiguienteCaracter();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
-
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA TILDADA I";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado80()
         {
-            categoria = "LETRA TILDADA O";
-         //   Concatenar();
-            //  LeerSiguienteCaracter();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA TILDADA O";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
         }
         private void ProcesarEstado81()
         {
-            categoria = "LETRA TILDADA U";
-         //   Concatenar();
-            //  LeerSiguienteCaracter();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA TILDADA U";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
 
         }
         private void ProcesarEstado82()
         {
-            categoria = "LETRA DIERISIS U";
-        //    Concatenar();
-            //  LeerSiguienteCaracter();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LETRA DIERISIS U";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
         private void ProcesarEstado83()
         {
-            categoria = "DIGITO 0";
-        //    Concatenar();
-            //  LeerSiguienteCaracter();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "DIGITO 0";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
         private void ProcesarEstado84()
         {
-            categoria = "DIGITO 1";
-        //    Concatenar();
-            //  LeerSiguienteCaracter();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "DIGITO 1";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
         private void ProcesarEstado85()
         {
-            categoria = "DIGITO 2";
-         //   Concatenar();
-            //  LeerSiguienteCaracter();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "DIGITO 2";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
 
 
         }
@@ -1347,82 +1625,155 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
 
         private void ProcesarEstado96()
         {
-            categoria = "DIGITO 3";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "DIGITO 3";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado97()
         {
-            categoria = "DIGITO 4";
-          //  Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "DIGITO 4";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
+
         }
 
 
         private void ProcesarEstado98()
         {
-            categoria = "DIGITO 5";
-        //    Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "DIGITO 5";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado99()
         {
-            categoria = "DIGITO 6";
-        //    Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "DIGITO 6";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado100()
         {
-            categoria = "DIGITO 7";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "DIGITO 7";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado101()
         {
-            categoria = "DIGITO 8";
-        //    Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "DIGITO 8";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado102()
         {
-            categoria = "DIGITO 9";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "DIGITO 9";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado103()
         {
-            categoria = "COMA";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "COMA";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado104()
         {
-            categoria = "PUNTO Y COMA";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "PUNTO Y COMA";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
@@ -1568,82 +1919,161 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
 
         private void ProcesarEstado115()
         {
-            categoria = "PUNTO";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "PUNTO";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado116()
         {
-            categoria = "DOS PUNTOS";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "DOS PUNTOS";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado117()
         {
-            categoria = "PARENTESIS ABRE";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "PARENTESIS ABRE";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado118()
         {
-            categoria = "PARENTESIS CIERRA";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "PARENTESIS CIERRA";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado119()
         {
-            categoria = "CORCHETES ABRE";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "CORCHETES ABRE";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado120()
         {
-            categoria = "CORCHETES CIERRA";
-          //  Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "CORCHETES CIERRA";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado121()
         {
-            categoria = "LLAVES ABRE";
-          //  Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LLAVES ABRE";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado122()
         {
-            categoria = "LLAVES CIERRA";
-          //  Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "LLAVES CIERRA";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado123()
         {
-            categoria = "NUMERAL";
-          //  Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "NUMERAL";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
@@ -1789,82 +2219,163 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
 
         private void ProcesarEstado134()
         {
-            categoria = "SIGNO PESO";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "SIGNO PESO";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado135()
         {
-            categoria = "SIGNO AMPERSAN";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "SIGNO AMPERSAN";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado136()
         {
-            categoria = "SIGNO ARROBA";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "SIGNO ARROBA";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado137()
         {
-            categoria = "SIGNO MAS";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "SIGNO MAS";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado138()
         {
-            categoria = "SIGNO MENOS";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "SIGNO MENOS";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado139()
         {
-            categoria = "SIGNO MULTIPLICACION";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "SIGNO MULTIPLICACION";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado140()
         {
-            categoria = "SIGNO DIVISION";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "SIGNO DIVISION";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado141()
         {
-            categoria = "PORCENTAJE";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "PORCENTAJE";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado142()
         {
-            categoria = "SIGNO IGUAL";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "SIGNO IGUAL";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
@@ -2009,83 +2520,158 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         private void ProcesarEstado153()
         {
 
-            categoria = "BARRA INVERSA";
-        //    Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "BARRA INVERSA";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado154()
         {
 
-            categoria = "PALO";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "PALO";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
+
         }
 
 
         private void ProcesarEstado155()
         {
-            categoria = "COMILLA";
-        //    Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "COMILLA";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado156()
         {
-            categoria = "COMILLA SIMPLE";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "COMILLA SIMPLE";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado157()
         {
-            categoria = "ACENTO CIRCUNFLEJO";
-        //    Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "EXCLAMACION ABRE";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            { estadoActual = "q999"; }
         }
 
 
         private void ProcesarEstado158()
         {
-            categoria = "EXCLAMACION ABRE";
-        //    Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "EXCLAMACION CIERRA";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            { estadoActual = "q999"; }
         }
 
 
         private void ProcesarEstado159()
         {
-            categoria = "EXCLAMACION CIERRA";
-        //    Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "EXCLAMACION CIERRA";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado160()
         {
-            categoria = "SIGNO DE PREGUNTA ABRE";
-        //    Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "SIGNO DE PREGUNTA ABRE";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado161()
         {
-            categoria = "SIGNO DE PREGUNTA CIERRA";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "SIGNO DE PREGUNTA CIERRA";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
@@ -2229,81 +2815,156 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
 
         private void ProcesarEstado172()
         {
-            categoria = "GUION BAJO";
-        //    Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "GUION BAJO";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado173()
         {
-            categoria = "MAYOR QUE";
-        //    Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "MAYOR QUE";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado174()
         {
-            categoria = "MENOR QUE";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "MENOR QUE";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
         private void ProcesarEstado175()
         {
-            categoria = "SUPERINDICE A";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "SUPERINDICE A";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado176()
         {
-            categoria = "SUPERINDICE O";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "SUPERINDICE O";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado177()
         {
-            categoria = "VERGULILLA";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "VERGULILLA";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado178()
         {
-            categoria = "COMILLA ABRE";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
-        }
 
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "COMILLA ABRE";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
+        }
 
         private void ProcesarEstado179()
         {
-            categoria = "COMILLA CIERRA";
-         //   Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "COMILLA CIERRA";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 
         private void ProcesarEstado180()
         {
-            categoria = "ESPACIO";
-        //    Concatenar();
-            FormarComponenteLexico();
-            continuarAnalisis = false;
+
+            LeerSiguienteCaracter();
+            if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
+            {
+                DevolverPuntero();
+                categoria = "CARACTER ESPACIO";
+                FormarComponenteLexico();
+                continuarAnalisis = false;
+            }
+            else
+            {
+                estadoActual = "q999";
+            }
         }
 
 

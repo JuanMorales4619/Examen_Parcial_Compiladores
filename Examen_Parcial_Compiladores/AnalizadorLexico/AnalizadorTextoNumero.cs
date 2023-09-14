@@ -36,7 +36,6 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
                 contenidoLineaActual = DataCache.ObtenerLinea(numeroLineaActual).Contenido;
                 numeroLineaActual = DataCache.ObtenerLinea(numeroLineaActual).NumeroLinea;
                 puntero = 1;
-                contenidoLineaActual = contenidoLineaActual.Replace("\t", new string(' ', 4));
             }
         }
         private void LeerSiguienteCaracter()
