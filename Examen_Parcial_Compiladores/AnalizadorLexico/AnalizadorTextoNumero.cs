@@ -889,12 +889,9 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado83() 
         {
-            categoria = "FIN LINEA";
-            Concatenar();
-            FormarComponenteLexico();
             CargarNuevaLinea();
             Resetear();
-            
+
         }
         private void ProcesarEstado84() 
         {

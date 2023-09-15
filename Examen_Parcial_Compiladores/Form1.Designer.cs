@@ -37,6 +37,7 @@
             this.btnCargar1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.btnCompilar = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -122,7 +123,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Enabled = false;
-            this.label3.Location = new System.Drawing.Point(156, 410);
+            this.label3.Location = new System.Drawing.Point(177, 318);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 7;
@@ -139,11 +140,22 @@
             this.btnCompilar.UseVisualStyleBackColor = true;
             this.btnCompilar.Click += new System.EventHandler(this.btnCompilar_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(108, 370);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(255, 182);
+            this.textBox1.TabIndex = 9;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(957, 605);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnCompilar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnCargar1);
@@ -172,6 +184,7 @@
         private System.Windows.Forms.Button btnCargar1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnCompilar;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

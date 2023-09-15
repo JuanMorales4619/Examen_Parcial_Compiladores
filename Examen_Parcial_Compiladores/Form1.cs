@@ -50,6 +50,8 @@ namespace Examen_Parcial_Compiladores
                 EntradaManual.Enabled = true;
                 EntradaManual.Visible = true;
 
+                label3.Visible = false;
+
                 btnCargar1.Enabled = false;
                 btnCargar1.Visible = false;
             }
@@ -66,6 +68,8 @@ namespace Examen_Parcial_Compiladores
 
         private void btnCargar(object sender, EventArgs e)
         {
+            textBox2.Text = "";
+            textBox1.Text = "";
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Archivos de texto (*.txt)|*.txt";
 
@@ -73,10 +77,18 @@ namespace Examen_Parcial_Compiladores
             {
                 string rutaArchivo = openFileDialog.FileName;
 
+                
+
                 try
                 {
                     string[] contenido = File.ReadAllLines(rutaArchivo);
+                    int lineNumber = 1;
 
+                    foreach (string cadena in contenido)
+                    {
+                        textBox1.AppendText(lineNumber + ": " + cadena + Environment.NewLine);
+                        lineNumber++;
+                    }
                     DataCache.AgregarLienas(contenido);
                     label3.Text = "Archivo cargado correctamente";
                     label3.Enabled = true;
@@ -92,9 +104,16 @@ namespace Examen_Parcial_Compiladores
         private void btnCompilar_Click(object sender, EventArgs e)
         {
             textBox2.Text = "";
+            textBox1.Text = "";
             if(comboBox1.SelectedIndex == 2)
             {
                 string[] lineas = EntradaManual.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+                int lineNumber = 1;
+                foreach (string cadena in lineas)
+                {
+                    textBox1.AppendText(lineNumber + ": " + cadena + Environment.NewLine);
+                    lineNumber++;
+                }
                 DataCache.Limpiar();
                 DataCache.AgregarLienas(lineas);
             }
@@ -117,7 +136,7 @@ namespace Examen_Parcial_Compiladores
                 do
                 {
                     lexema = anaLex.DevolverSiguienteComponente();
-                    textBox2.Text = textBox2.Text + " " + lexema + Environment.NewLine;//Texto.TraducirTextoPunto(lexema);
+                    textBox2.Text = textBox2.Text + " " + lexema + Environment.NewLine;
 
                 } while (!lexema.Contains("FIN ARCHIVO"));
 
@@ -138,7 +157,7 @@ namespace Examen_Parcial_Compiladores
                 do
                 {
                     lexema = anaLex.DevolverSiguienteComponente();
-                    textBox2.Text = textBox2.Text + " " + lexema + Environment.NewLine;//Texto.TraducirTextoPunto(lexema);
+                    textBox2.Text = textBox2.Text + " " + lexema + Environment.NewLine;
 
                 } while (!lexema.Contains("FIN ARCHIVO"));
 
@@ -155,10 +174,11 @@ namespace Examen_Parcial_Compiladores
             {
                 AnalizadorLexicoPunto anaLex = new AnalizadorLexicoPunto();
                 string lexema = anaLex.DevolverSiguienteComponente();
+                textBox2.Text = textBox2.Text + " " + lexema + Environment.NewLine;
                 do
                 {
-                    textBox2.Text = textBox2.Text + " " + lexema + Environment.NewLine;
-                    lexema = anaLex.DevolverSiguienteComponente();
+                    lexema = anaLex.DevolverSiguienteComponente() + Environment.NewLine;
+                    textBox2.Text = textBox2.Text + " " + lexema;
 
                 } while (!lexema.Contains("FIN ARCHIVO"));
 
@@ -176,10 +196,11 @@ namespace Examen_Parcial_Compiladores
             {
                 AnalizadorLexicoPunto anaLex = new AnalizadorLexicoPunto();
                 string lexema = anaLex.DevolverSiguienteComponente();
+                textBox2.Text = textBox2.Text + " " + lexema + Environment.NewLine;
                 do
                 {
-                    textBox2.Text = textBox2.Text + " " + lexema + Environment.NewLine;
-                    lexema = anaLex.DevolverSiguienteComponente();
+                    lexema = anaLex.DevolverSiguienteComponente() + Environment.NewLine;
+                    textBox2.Text = textBox2.Text + " " + lexema;
 
                 } while (!lexema.Contains("FIN ARCHIVO"));
 
@@ -197,10 +218,11 @@ namespace Examen_Parcial_Compiladores
             {
                 AnalizadorLexicoNumero anaLex = new AnalizadorLexicoNumero();
                 string lexema = anaLex.DevolverSiguienteComponente();
+                textBox2.Text = textBox2.Text + " " + lexema + Environment.NewLine;
                 do
-                {
+                {                   
+                    lexema = anaLex.DevolverSiguienteComponente() +Environment.NewLine;
                     textBox2.Text = textBox2.Text + " " + lexema;
-                    lexema = anaLex.DevolverSiguienteComponente();
 
                 } while (!lexema.Contains("FIN ARCHIVO"));
 
@@ -218,10 +240,11 @@ namespace Examen_Parcial_Compiladores
             {
                 AnalizadorLexicoNumero anaLex = new AnalizadorLexicoNumero();
                 string lexema = anaLex.DevolverSiguienteComponente();
+                textBox2.Text = textBox2.Text + " " + lexema + Environment.NewLine;
                 do
                 {
-                    textBox2.Text = textBox2.Text + " " + lexema + Environment.NewLine;
-                    lexema = anaLex.DevolverSiguienteComponente();
+                    lexema = anaLex.DevolverSiguienteComponente() + Environment.NewLine;
+                    textBox2.Text = textBox2.Text + " " + lexema;
 
                 } while (!lexema.Contains("FIN ARCHIVO"));
 
@@ -231,6 +254,12 @@ namespace Examen_Parcial_Compiladores
                 MessageBox.Show("Error de compilacion: " + ex);
             }
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            textBox1.Enabled = false;
+            textBox1.Visible = true;
         }
     }
 }
