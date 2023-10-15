@@ -1,4 +1,5 @@
 ﻿using Examen_Parcial_Compiladores.Cache;
+using Examen_Parcial_Compiladores.TablaComponentes;
 using Examen_Parcial_Compiladores.Util;
 using System;
 using System.Collections.Generic;
@@ -17,12 +18,13 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         private int puntero = 0;
         private string caracterActual = "";
         private string lexema = "";
-        private string categoria = "";
+        private CategoriaGramatical categoria;
         private string estadoActual = "";
         private int posicionInicial = 0;
-        private int posicionFinal = 0;
         private bool continuarAnalisis = false;
         private string resultado = "";
+        private ComponenteLexico componente = null;
+        private TipoComponente tipo = TipoComponente.SIMBOLO;
 
         public AnalizadorLexicoNumero()
         {
@@ -71,23 +73,23 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         {
             estadoActual = "q0";
             lexema = "";
-            categoria = "";
+            categoria = CategoriaGramatical.DEFECTO;
             posicionInicial = 0;
-            posicionFinal = 0;
             caracterActual = "";
             continuarAnalisis = true;
             resultado = "";
+            componente = null;
+            tipo = TipoComponente.SIMBOLO;
         }
         private void FormarComponenteLexico()
         {
             posicionInicial = puntero - lexema.Length;
-            posicionFinal = puntero - 1;
 
-            resultado = "Categoria : " + categoria + Environment.NewLine + "Lexema: " + lexema + Environment.NewLine + "Numeor linea: " + numeroLineaActual
-                + Environment.NewLine + "Posicion inicial: " + posicionInicial + Environment.NewLine + "posicion final: " + posicionFinal;
+            
+            componente = ComponenteLexico.CREAR_SIMBOLO(numeroLineaActual, posicionInicial, lexema, categoria);
         }
 
-        public string DevolverSiguienteComponente()
+        public ComponenteLexico DevolverSiguienteComponente()
         {
             Resetear();
             while (continuarAnalisis)
@@ -191,7 +193,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
 
 
             }
-            return resultado;
+            TablaMaestra.ObtenerTablaMaestra().Agregar(componente);
+            return componente;
         }
 
 
@@ -257,70 +260,64 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado2()
         {
-            categoria = "LETRA A";
+            categoria = CategoriaGramatical.LETRA_A;
             Concatenar();
             FormarComponenteLexico();
             continuarAnalisis = false;
         }
         private void ProcesarEstado3()
         {
-            categoria = "LETRA B";
+            categoria = CategoriaGramatical.LETRA_B;
             Concatenar();
             FormarComponenteLexico();
             continuarAnalisis = false;
         }
         private void ProcesarEstado4()
         {
-            categoria = "LETRA C";
+            categoria = CategoriaGramatical.LETRA_C;
             Concatenar();
             FormarComponenteLexico();
             continuarAnalisis = false;
         }
         private void ProcesarEstado5()
         {
-            categoria = "LETRA D";
+            categoria = CategoriaGramatical.LETRA_D;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
         }
         private void ProcesarEstado6()
         {
-            categoria = "LETRA E";
+            categoria = CategoriaGramatical.LETRA_E;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
         }
         private void ProcesarEstado7()
         {
-            categoria = "LETRA F";
+            categoria = CategoriaGramatical.LETRA_F;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
         }
         private void ProcesarEstado8()
         {
-            categoria = "LETRA G";
+            categoria = CategoriaGramatical.LETRA_G;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
         }
         private void ProcesarEstado9()
         {
-            categoria = "LETRA H";
+            categoria = CategoriaGramatical.LETRA_H;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
         }
         private void ProcesarEstado10()
         {
-            categoria = "LETRA I";
+            categoria = CategoriaGramatical.LETRA_I;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
         }
@@ -347,54 +344,48 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado12()
         {
-            categoria = "LETRA J";
+            categoria = CategoriaGramatical.LETRA_J;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado13()
         {
-            categoria = "LETRA K";
+            categoria = CategoriaGramatical.LETRA_K;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado14()
         {
-            categoria = "LETRA L";
+            categoria = CategoriaGramatical.LETRA_L;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado15()
         {
-            categoria = "LETRA M";
+            categoria = CategoriaGramatical.LETRA_M;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado16()
         {
-            categoria = "LETRA N";
+            categoria = CategoriaGramatical.LETRA_N;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado17()
         {
-            categoria = "LETRA Ñ";
+            categoria = CategoriaGramatical.LETRA_Ñ;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -402,9 +393,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado18()
         {
-            categoria = "LETRA O";
+            categoria = CategoriaGramatical.LETRA_O;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -412,9 +402,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado19()
         {
-            categoria = "LETRA P";
+            categoria = CategoriaGramatical.LETRA_P;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -422,9 +411,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado20()
         {
-            categoria = "LETRA Q";
+            categoria = CategoriaGramatical.LETRA_Q;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -450,63 +438,56 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado22()
         {
-            categoria = "LETRA R";
+            categoria = CategoriaGramatical.LETRA_R;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado23()
         {
-            categoria = "LETRA S";
+            categoria = CategoriaGramatical.LETRA_S;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado24()
         {
-            categoria = "LETRA T";
+            categoria = CategoriaGramatical.LETRA_T;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado25()
         {
-            categoria = "LETRA U";
+            categoria = CategoriaGramatical.LETRA_U;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado26()
         {
-            categoria = "LETRA V";
+            categoria = CategoriaGramatical.LETRA_V;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado27()
         {
-            categoria = "LETRA W";
+            categoria = CategoriaGramatical.LETRA_W;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado28()
         {
-            categoria = "LETRA X";
+            categoria = CategoriaGramatical.LETRA_X;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -514,18 +495,16 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado29()
         {
-            categoria = "LETRA Y";
+            categoria = CategoriaGramatical.LETRA_Y;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado30()
         {
-            categoria = "LETRA Z";
+            categoria = CategoriaGramatical.LETRA_Z;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
         }
@@ -551,81 +530,72 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado32()
         {
-            categoria = "LETRA TILDADA A";
+            categoria = CategoriaGramatical.LETRA_TILDADA_A;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado33()
         {
-            categoria = "LETRA TILDADA E";
+            categoria = CategoriaGramatical.LETRA_TILDADA_E;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado34()
         {
-            categoria = "LETRA TILDADA I";
+            categoria = CategoriaGramatical.LETRA_TILDADA_I;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado35()
         {
-            categoria = "LETRA TILDADA O";
+            categoria = CategoriaGramatical.LETRA_TILDADA_O;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado36()
         {
-            categoria = "LETRA TILDADA U";
+            categoria = CategoriaGramatical.LETRA_TILDADA_U;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado37()
         {
-            categoria = "LETRA DIERISIS U";
+            categoria = CategoriaGramatical.LETRA_DIERISIS_U;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado38()
         {
-            categoria = "DOGITO 0";
+            categoria = CategoriaGramatical.Digito_0;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado39()
         {
-            categoria = "DIGITO 1";
+            categoria = CategoriaGramatical.Digito_1;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado40()
         {
-            categoria = "DIGITO 2";
+            categoria = CategoriaGramatical.Digito_1;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -650,81 +620,72 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado42()
         {
-            categoria = "DIGITO 3";
+            categoria = CategoriaGramatical.Digito_3;
             Concatenar();
-            // LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado43()
         {
-            categoria = "DIGITO 4";
+            categoria = CategoriaGramatical.Digito_4;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado44()
         {
-            categoria = "DIGITO 5";
+            categoria = CategoriaGramatical.Digito_5;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado45()
         {
-            categoria = "DIGITO 6";
+            categoria = CategoriaGramatical.Digito_6;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado46()
         {
-            categoria = "DIGITO 7";
+            categoria = CategoriaGramatical.Digito_7;
             Concatenar();
-            // LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado47()
         {
-            categoria = "DIGITO 8";
+            categoria = CategoriaGramatical.Digito_8;
             Concatenar();
-            // LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado48()
         {
-            categoria = "DIGITO 9";
+            categoria = CategoriaGramatical.Digito_9;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado49()
         {
-            categoria = "COMA";
+            categoria = CategoriaGramatical.Coma;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado50()
         {
-            categoria = "PUNTO Y COMA";
+            categoria = CategoriaGramatical.Punto_y_coma;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -749,81 +710,72 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado52()
         {
-            categoria = "PUNTO";
+            categoria = CategoriaGramatical.Punto;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado53()
         {
-            categoria = "DOS PUNTOS";
+            categoria = CategoriaGramatical.Dos_puntos;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado54()
         {
-            categoria = "PARENTESIS ABRE";
+            categoria = CategoriaGramatical.Parentesis_abre;
             Concatenar();
-            // LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado55()
         {
-            categoria = "PARENTESIS CIERRA";
+            categoria = CategoriaGramatical.Parentesis_cierra;
             Concatenar();
-            //LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado56()
         {
-            categoria = "CORCHETE ABRE";
+            categoria = CategoriaGramatical.Corchetes_abre;
             Concatenar();
-            // LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado57()
         {
-            categoria = "CORCHETE CIERRA";
+            categoria = CategoriaGramatical.Corchetes_cierra;
             Concatenar();
-            // LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado58()
         {
-            categoria = "LLAVE ABRE";
+            categoria = CategoriaGramatical.Llaves_abre;
             Concatenar();
-            // LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado59()
         {
-            categoria = "LLAVE CIERRA";
+            categoria = CategoriaGramatical.Llaves_cierra;
             Concatenar();
-            // LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado60()
         {
-            categoria = "NUMERAL";
+            categoria = CategoriaGramatical.Numeral;
             Concatenar();
-            // LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -848,81 +800,72 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado62()
         {
-            categoria = "SIGNO PESO";
+            categoria = CategoriaGramatical.Signo_peso;
             Concatenar();
-            // LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado63()
         {
-            categoria = "SIGNO AMPERSAD";
+            categoria = CategoriaGramatical.SIGNO_AMPERSAN;
             Concatenar();
-            //  LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado64()
         {
-            categoria = "SIGNO ARROBA";
+            categoria = CategoriaGramatical.SIGNO_ARROBA;
             Concatenar();
-            // LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado65()
         {
-            categoria = "SIGNO MAS";
+            categoria = CategoriaGramatical.SIGNO_MÁS;
             Concatenar();
-            //  LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado66()
         {
-            categoria = "SIGNO MENOS";
+            categoria = CategoriaGramatical.SIGNO_MENOS;
             Concatenar();
-            //  LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado67()
         {
-            categoria = "SIGNO MULTIPLICACION";
+            categoria = CategoriaGramatical.SIGNO_MULTIPLICACION;
             Concatenar();
-            //  LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado68()
         {
-            categoria = "SIGNO DIVISION";
+            categoria = CategoriaGramatical.SIGNO_DIVISION;
             Concatenar();
-            // LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado69()
         {
-            categoria = "PORCENTAJE";
+            categoria = CategoriaGramatical.PORCENTAJE;
             Concatenar();
-            // LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado70()
         {
-            categoria = "SIGNO IGUAL";
+            categoria = CategoriaGramatical.SIGNO_IGUAL;
             Concatenar();
-            //  LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -947,36 +890,32 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado72()
         {
-            categoria = "BARRA INVERTIDA";
+            categoria = CategoriaGramatical.BARRA_INVERSA;
             Concatenar();
-            //   LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado73()
         {
-            categoria = "PALO";
+            categoria = CategoriaGramatical.PALO;
             Concatenar();
-            //   LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado74()
         {
-            categoria = "COMILLA";
+            categoria = CategoriaGramatical.COMILLA;
             Concatenar();
-            //   LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
         }
         private void ProcesarEstado75()
         {
-            categoria = "COMILLA SIMPLE";
+            categoria = CategoriaGramatical.COMILLA_SIMPLE;
             Concatenar();
-            //   LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -984,9 +923,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado76()
         {
-            categoria = "ACENTO CIRCUNFLEJO";
+            categoria = CategoriaGramatical.ACENTO_CIRCUNFLEJO;
             Concatenar();
-            //   LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -994,9 +932,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado77()
         {
-            categoria = "EXCLAMACION ABRE";
+            categoria = CategoriaGramatical.EXCLAMACION_ABRE;
             Concatenar();
-            //  LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -1004,9 +941,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado78()
         {
-            categoria = "EXCLAMACION CIERRA";
+            categoria = CategoriaGramatical.EXCLAMACION_CIERRA;
             Concatenar();
-            //  LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -1014,9 +950,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado79()
         {
-            categoria = "SIGNO PREGUNTA ABRE";
+            categoria = CategoriaGramatical.SIGNO_DE_PREGUNTA_ABRE;
             Concatenar();
-            //   LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -1024,9 +959,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado80()
         {
-            categoria = "SIGNO PREGUNTA CIERRA";
+            categoria = CategoriaGramatical.SIGNO_DE_PREGUNTA_CIERRA;
             Concatenar();
-            //   LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -1053,6 +987,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado82()
         {
+            categoria = CategoriaGramatical.NO_DEFINIDA;
+            tipo = TipoComponente.SIMBOLO;
             throw new Exception("Caracter no reconocido por el sistema");
         }
         private void ProcesarEstado83()
@@ -1062,7 +998,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado84()
         {
-            categoria = "FIN ARCHIVO";
+            categoria = CategoriaGramatical.FIN_ARCHIVO;
             Concatenar();
             FormarComponenteLexico();
             continuarAnalisis = false;
@@ -1070,7 +1006,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
 
         private void ProcesarEstado85()
         {
-            categoria = "GUION BAJO";
+            categoria = CategoriaGramatical.GUION_BAJO;
             Concatenar();
             FormarComponenteLexico();
             continuarAnalisis = false;
@@ -1079,9 +1015,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado86()
         {
-            categoria = "MAYOR QUE";
+            categoria = CategoriaGramatical.MAYOR_QUE;
             Concatenar();
-            //  LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -1089,9 +1024,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado87()
         {
-            categoria = "MENOR QUE";
+            categoria = CategoriaGramatical.MENOR_QUE;
             Concatenar();
-            //   LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -1099,9 +1033,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado88()
         {
-            categoria = "SUPERINDICE A";
+            categoria = CategoriaGramatical.SUPERINDICE_A;
             Concatenar();
-            //   LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -1109,9 +1042,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado89()
         {
-            categoria = "SUPERINDICE O";
+            categoria = CategoriaGramatical.SUPERINDICE_0;
             Concatenar();
-            //  LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -1119,9 +1051,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado90()
         {
-            categoria = "VERGULILLA";
+            categoria = CategoriaGramatical.VERGULILLA;
             Concatenar();
-            //  LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -1129,9 +1060,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado91()
         {
-            categoria = "COMILLA ABRE";
+            categoria = CategoriaGramatical.COMILLA_ABRE;
             Concatenar();
-            //   LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -1139,9 +1069,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado92()
         {
-            categoria = "COMILLA CIERRA";
+            categoria = CategoriaGramatical.COMILLA_CIERRA;
             Concatenar();
-            //   LeerSiguienteCaracter();
             FormarComponenteLexico();
             continuarAnalisis = false;
 
@@ -1149,7 +1078,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado93()
         {
-            categoria = "SIGNO ESPACIO";
+            categoria = CategoriaGramatical.SIGNO_ESPACIO;
             Concatenar();
             FormarComponenteLexico();
             continuarAnalisis = false;

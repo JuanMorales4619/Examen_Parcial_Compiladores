@@ -143,7 +143,7 @@ namespace Examen_Parcial_Compiladores
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error de compilacion: " + ex);
+                MessageBox.Show("Error de compilacion: " + ex.Message);
             }
         }
         private void TextoNumero()
@@ -164,7 +164,7 @@ namespace Examen_Parcial_Compiladores
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error de compilacion: " + ex);
+                MessageBox.Show("Error de compilacion: " + ex.Message);
             }
         }
         private  void PuntoTexto()
@@ -185,7 +185,7 @@ namespace Examen_Parcial_Compiladores
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error de compilacion: " + ex);
+                MessageBox.Show("Error de compilacion: " + ex.Message);
             }
 
         }
@@ -207,7 +207,7 @@ namespace Examen_Parcial_Compiladores
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error de compilacion: " + ex);
+                MessageBox.Show("Error de compilacion: " + ex.Message);
             }
 
         }
@@ -217,19 +217,18 @@ namespace Examen_Parcial_Compiladores
             try
             {
                 AnalizadorLexicoNumero anaLex = new AnalizadorLexicoNumero();
-                string lexema = anaLex.DevolverSiguienteComponente();
-                textBox2.Text = textBox2.Text + " " + lexema + Environment.NewLine;
+                ComponenteLexico componente = anaLex.DevolverSiguienteComponente();
                 do
-                {                   
-                    lexema = anaLex.DevolverSiguienteComponente() +Environment.NewLine;
-                    textBox2.Text = textBox2.Text + " " + lexema;
+                {
+                    textBox2.Text = textBox2.Text + " " + componente.ToString()+ Environment.NewLine;
+                    componente = anaLex.DevolverSiguienteComponente();
 
-                } while (!lexema.Contains("FIN ARCHIVO"));
+                } while (!CategoriaGramatical.FIN_ARCHIVO.Equals(componente.Categoria));
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error de compilacion: " + ex);
+                MessageBox.Show("Error de compilacion: " + ex.Message);
             }
 
         }
@@ -239,19 +238,18 @@ namespace Examen_Parcial_Compiladores
             try
             {
                 AnalizadorLexicoNumero anaLex = new AnalizadorLexicoNumero();
-                string lexema = anaLex.DevolverSiguienteComponente();
-                textBox2.Text = textBox2.Text + " " + lexema + Environment.NewLine;
+                ComponenteLexico componente = anaLex.DevolverSiguienteComponente();
                 do
                 {
-                    lexema = anaLex.DevolverSiguienteComponente() + Environment.NewLine;
-                    textBox2.Text = textBox2.Text + " " + lexema;
+                    textBox2.Text = textBox2.Text + " " + componente.ToString() + Environment.NewLine;
+                    componente = anaLex.DevolverSiguienteComponente();
 
-                } while (!lexema.Contains("FIN ARCHIVO"));
+                } while (!CategoriaGramatical.FIN_ARCHIVO.Equals(componente.Categoria));
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error de compilacion: " + ex);
+                MessageBox.Show("Error de compilacion: " + ex.Message);
             }
 
         }
