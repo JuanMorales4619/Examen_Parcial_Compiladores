@@ -51,7 +51,13 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
             this.textBox7 = new System.Windows.Forms.TextBox();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
             this.AnalisisLexico.SuspendLayout();
             this.Analisis_Lexico.SuspendLayout();
             this.Errores.SuspendLayout();
@@ -61,6 +67,10 @@
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabControl2.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -206,7 +216,7 @@
             // 
             // Errores
             // 
-            this.Errores.Controls.Add(this.textBox7);
+            this.Errores.Controls.Add(this.tabControl2);
             this.Errores.Location = new System.Drawing.Point(4, 22);
             this.Errores.Name = "Errores";
             this.Errores.Padding = new System.Windows.Forms.Padding(3);
@@ -313,13 +323,73 @@
             this.textBox6.Size = new System.Drawing.Size(490, 397);
             this.textBox6.TabIndex = 0;
             // 
+            // tabControl2
+            // 
+            this.tabControl2.Controls.Add(this.tabPage5);
+            this.tabControl2.Controls.Add(this.tabPage6);
+            this.tabControl2.Controls.Add(this.tabPage7);
+            this.tabControl2.Location = new System.Drawing.Point(6, 6);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(839, 520);
+            this.tabControl2.TabIndex = 1;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.textBox7);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(831, 494);
+            this.tabPage5.TabIndex = 0;
+            this.tabPage5.Text = "Lexico";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.textBox8);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(831, 494);
+            this.tabPage6.TabIndex = 1;
+            this.tabPage6.Text = "Sintactico";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(127, 27);
+            this.textBox7.Location = new System.Drawing.Point(119, 24);
             this.textBox7.Multiline = true;
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(557, 471);
+            this.textBox7.Size = new System.Drawing.Size(534, 464);
             this.textBox7.TabIndex = 0;
+            this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.textBox9);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(831, 494);
+            this.tabPage7.TabIndex = 2;
+            this.tabPage7.Text = "Semantico";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(97, 6);
+            this.textBox8.Multiline = true;
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(569, 488);
+            this.textBox8.TabIndex = 0;
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(114, 3);
+            this.textBox9.Multiline = true;
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(579, 488);
+            this.textBox9.TabIndex = 0;
             // 
             // Form1
             // 
@@ -334,7 +404,6 @@
             this.Analisis_Lexico.ResumeLayout(false);
             this.Analisis_Lexico.PerformLayout();
             this.Errores.ResumeLayout(false);
-            this.Errores.PerformLayout();
             this.Tablas.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -345,6 +414,13 @@
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -374,7 +450,13 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBox9;
     }
 }
 

@@ -1,4 +1,6 @@
 ﻿using Examen_Parcial_Compiladores.Cache;
+using Examen_Parcial_Compiladores.GestorErrores;
+using Examen_Parcial_Compiladores.TablaComponentes;
 using Examen_Parcial_Compiladores.Util;
 using System;
 using System.Collections.Generic;
@@ -18,12 +20,15 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         private int puntero = 0;
         private string caracterActual = "";
         private string lexema = "";
-        private string categoria = "";
+        private CategoriaGramatical categoria;
         private string estadoActual = "";
         private int posicionInicial = 0;
-        private int posicionFinal = 0;
         private bool continuarAnalisis = false;
-        private string resultado = "";
+        private ComponenteLexico componente = null;
+        private TipoComponente tipo = TipoComponente.SIMBOLO;
+        private string falla = "";
+        private string causa = "";
+        private string solucion = "";
 
         public AnalizadorLexicoPunto()
         {
@@ -72,23 +77,32 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         {
             estadoActual = "q0";
             lexema = "";
-            categoria = "";
+            categoria = CategoriaGramatical.DEFECTO;
             posicionInicial = 0;
-            posicionFinal = 0;
             caracterActual = "";
             continuarAnalisis = true;
-            resultado = "";
+            componente = null;
+            tipo = TipoComponente.LITERAL;
         }
         private void FormarComponenteLexico()
         {
             posicionInicial = puntero - lexema.Length;
-            posicionFinal = puntero - 1;
-
-            resultado = "Categoria : " + categoria + Environment.NewLine + "Lexema: " + lexema + Environment.NewLine + "Numeor linea: " + numeroLineaActual
-                + Environment.NewLine + "Posicion inicial: " + posicionInicial + Environment.NewLine + "posicion final: " + posicionFinal;
+            componente = ComponenteLexico.CREAR_LITERAL(numeroLineaActual, posicionInicial, lexema, categoria);
+        }
+        private void ReportarErrorLexicoRecuperable()
+        {
+            posicionInicial = puntero - lexema.Length;
+            Error error = Error.CREAR_ERROR_LEXICO_RECUPERABLE(numeroLineaActual, posicionInicial, lexema, falla, causa, solucion);
+            ManejadorErrores.ObtenerManejadorErrores().ReportarError(error);
+        }
+        private void ReportarErrorLexicoStopper()
+        {
+            posicionInicial = puntero - lexema.Length;
+            Error error = Error.CREAR_ERROR_LEXICO_STOPPER(numeroLineaActual, posicionInicial, lexema, falla, causa, solucion);
+            ManejadorErrores.ObtenerManejadorErrores().ReportarError(error);
         }
 
-        public string DevolverSiguienteComponente()
+        public ComponenteLexico DevolverSiguienteComponente()
         {
             Resetear();
             while (continuarAnalisis)
@@ -282,16 +296,17 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
                 else if ("q178".Equals(estadoActual)) { ProcesarEstado178(); }
                 else if ("q179".Equals(estadoActual)) { ProcesarEstado179(); }
                 else if ("q180".Equals(estadoActual)) { ProcesarEstado180(); }
-                
+                else if ("q994".Equals(estadoActual)) { ProcesarEstado994(); }
                 else { ProcesarEstado82(); }
 
 
             }
-            return resultado;
+            TablaMaestra.ObtenerTablaMaestra().Agregar(componente);
+            return componente;
         }
         private void ProcesarEstado998()
         {
-            categoria = "FIN ARCHIVO";
+            categoria = CategoriaGramatical.FIN_ARCHIVO;
             Concatenar();
             FormarComponenteLexico();
             continuarAnalisis = false;
@@ -305,7 +320,10 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
 
         private void ProcesarEstado999()
         {
-            throw new Exception("Caracter no reconocido por el sistema");
+            falla = "Caracter no valido";
+            causa = "El calracter: " + caracterActual + " no esta reconocido por el sistema";
+            solucion = "Asegurese de ingresar un digito valido";
+            ReportarErrorLexicoStopper();
         }
 
         private void ProcesarEstado996()
@@ -313,8 +331,15 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual)) { estadoActual = "q995"; }
             else
             {
-                throw new Exception("Separacion entre caracteres invalida");
+                estadoActual = "q994";
             }
+        }
+        private void ProcesarEstado994()
+        {
+            falla = "Caracter no valido";
+            causa = "Se agrego un separador espacio de mas";
+            solucion = "Asegurese de colocar correctamente los espacios";
+            ReportarErrorLexicoStopper();
         }
 
         private void ProcesarEstado995()
@@ -326,7 +351,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             }
             else
             {
-                throw new Exception("Separacion entre caracteres invalida");
+                estadoActual = "q994";
             }
         }
 
@@ -444,7 +469,6 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(".")) { estadoActual = "q11"; }
-            //else if(caracterActual.Equals(" ") || caracterActual.Equals("@FL@")) { estadoActual = "q"; }
             else
             {
                 estadoActual = "q999";
@@ -564,7 +588,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA A";
+                categoria = CategoriaGramatical.LETRA_A;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -579,7 +603,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA B";
+                categoria = CategoriaGramatical.LETRA_B;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -594,7 +618,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA C";
+                categoria = CategoriaGramatical.LETRA_C;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -610,7 +634,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA D";
+                categoria = CategoriaGramatical.LETRA_D;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -626,7 +650,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA E";
+                categoria = CategoriaGramatical.LETRA_E;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -642,7 +666,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA F";
+                categoria = CategoriaGramatical.LETRA_F;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -658,7 +682,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA G";
+                categoria = CategoriaGramatical.LETRA_G;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -674,7 +698,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA H";
+                categoria = CategoriaGramatical.LETRA_H;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -690,7 +714,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA I";
+                categoria = CategoriaGramatical.LETRA_I;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -705,7 +729,6 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(".")) { estadoActual = "q30"; }
-            // if (caracterActual.Equals(" ")) { estadoActual = "q21"; }
             else
             {
                 estadoActual = "q999";
@@ -826,7 +849,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA J";
+                categoria = CategoriaGramatical.LETRA_J;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -842,7 +865,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA K";
+                categoria = CategoriaGramatical.LETRA_K;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -858,7 +881,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA L";
+                categoria = CategoriaGramatical.LETRA_L;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -873,7 +896,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA M";
+                categoria = CategoriaGramatical.LETRA_M;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -889,7 +912,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA N";
+                categoria = CategoriaGramatical.LETRA_N;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -905,7 +928,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA Ñ";
+                categoria = CategoriaGramatical.LETRA_Ñ;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -921,7 +944,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA O";
+                categoria = CategoriaGramatical.LETRA_O;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -937,7 +960,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA P";
+                categoria = CategoriaGramatical.LETRA_P;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -953,7 +976,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA Q";
+                categoria = CategoriaGramatical.LETRA_Q;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1088,7 +1111,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA R";
+                categoria = CategoriaGramatical.LETRA_R;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1104,7 +1127,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA S";
+                categoria = CategoriaGramatical.LETRA_S;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1120,7 +1143,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA T";
+                categoria = CategoriaGramatical.LETRA_T;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1136,7 +1159,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA U";
+                categoria = CategoriaGramatical.LETRA_U;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1151,7 +1174,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA V";
+                categoria = CategoriaGramatical.LETRA_V;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1167,7 +1190,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA W";
+                categoria = CategoriaGramatical.LETRA_W;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1183,7 +1206,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA X";
+                categoria = CategoriaGramatical.LETRA_X;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1199,7 +1222,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA Y";
+                categoria = CategoriaGramatical.LETRA_Y;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1215,7 +1238,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA Z";
+                categoria = CategoriaGramatical.LETRA_Z;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1351,7 +1374,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA TILDADA A";
+                categoria = CategoriaGramatical.LETRA_TILDADA_A;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1367,7 +1390,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA TILDADA E";
+                categoria = CategoriaGramatical.LETRA_TILDADA_E;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1384,7 +1407,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA TILDADA I";
+                categoria = CategoriaGramatical.LETRA_TILDADA_I;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1400,7 +1423,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA TILDADA O";
+                categoria = CategoriaGramatical.LETRA_TILDADA_O;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1416,7 +1439,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA TILDADA U";
+                categoria = CategoriaGramatical.LETRA_TILDADA_U;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1433,7 +1456,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LETRA DIERISIS U";
+                categoria = CategoriaGramatical.LETRA_DIERISIS_U;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1448,7 +1471,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "DIGITO 0";
+                categoria = CategoriaGramatical.Digito_0;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1463,7 +1486,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "DIGITO 1";
+                categoria = CategoriaGramatical.Digito_1;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1479,7 +1502,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "DIGITO 2";
+                categoria = CategoriaGramatical.Digito_2;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1629,7 +1652,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "DIGITO 3";
+                categoria = CategoriaGramatical.Digito_3;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1646,7 +1669,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "DIGITO 4";
+                categoria = CategoriaGramatical.Digito_4;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1664,7 +1687,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "DIGITO 5";
+                categoria = CategoriaGramatical.Digito_5;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1681,7 +1704,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "DIGITO 6";
+                categoria = CategoriaGramatical.Digito_6;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1698,7 +1721,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "DIGITO 7";
+                categoria = CategoriaGramatical.Digito_7;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1715,7 +1738,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "DIGITO 8";
+                categoria = CategoriaGramatical.Digito_8;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1732,7 +1755,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "DIGITO 9";
+                categoria = CategoriaGramatical.Digito_9;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1749,7 +1772,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "COMA";
+                categoria = CategoriaGramatical.Coma;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1766,7 +1789,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "PUNTO Y COMA";
+                categoria = CategoriaGramatical.Punto_y_coma;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1923,7 +1946,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "PUNTO";
+                categoria = CategoriaGramatical.Punto;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1940,7 +1963,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "DOS PUNTOS";
+                categoria = CategoriaGramatical.Dos_puntos;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1958,7 +1981,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "PARENTESIS ABRE";
+                categoria = CategoriaGramatical.Parentesis_abre;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1976,7 +1999,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "PARENTESIS CIERRA";
+                categoria = CategoriaGramatical.Parentesis_cierra;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -1994,7 +2017,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "CORCHETES ABRE";
+                categoria = CategoriaGramatical.Corchetes_abre;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2012,7 +2035,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "CORCHETES CIERRA";
+                categoria = CategoriaGramatical.Corchetes_cierra;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2030,7 +2053,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LLAVES ABRE";
+                categoria = CategoriaGramatical.Llaves_abre;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2048,7 +2071,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "LLAVES CIERRA";
+                categoria = CategoriaGramatical.Llaves_cierra;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2066,7 +2089,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "NUMERAL";
+                categoria = CategoriaGramatical.Numeral;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2224,7 +2247,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "SIGNO PESO";
+                categoria = CategoriaGramatical.Signo_peso;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2242,7 +2265,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "SIGNO AMPERSAN";
+                categoria = CategoriaGramatical.SIGNO_AMPERSAN;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2260,7 +2283,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "SIGNO ARROBA";
+                categoria = CategoriaGramatical.SIGNO_ARROBA;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2278,7 +2301,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "SIGNO MAS";
+                categoria = CategoriaGramatical.SIGNO_MÁS;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2296,7 +2319,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "SIGNO MENOS";
+                categoria = CategoriaGramatical.SIGNO_MENOS;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2314,7 +2337,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "SIGNO MULTIPLICACION";
+                categoria = CategoriaGramatical.SIGNO_MULTIPLICACION;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2332,7 +2355,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "SIGNO DIVISION";
+                categoria = CategoriaGramatical.SIGNO_DIVISION;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2350,7 +2373,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "PORCENTAJE";
+                categoria = CategoriaGramatical.PORCENTAJE;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2368,7 +2391,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "SIGNO IGUAL";
+                categoria = CategoriaGramatical.SIGNO_IGUAL;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2525,7 +2548,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "BARRA INVERSA";
+                categoria = CategoriaGramatical.BARRA_INVERSA;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2544,7 +2567,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "PALO";
+                categoria = CategoriaGramatical.PALO;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2563,7 +2586,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "COMILLA";
+                categoria = CategoriaGramatical.COMILLA;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2581,7 +2604,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "COMILLA SIMPLE";
+                categoria = CategoriaGramatical.COMILLA_SIMPLE;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2598,7 +2621,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "EXCLAMACION ABRE";
+                categoria = CategoriaGramatical.EXCLAMACION_ABRE;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2613,7 +2636,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "EXCLAMACION CIERRA";
+                categoria = CategoriaGramatical.EXCLAMACION_CIERRA;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2629,7 +2652,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "EXCLAMACION CIERRA";
+                categoria = CategoriaGramatical.SIGNO_DE_PREGUNTA_ABRE;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2646,7 +2669,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "SIGNO DE PREGUNTA ABRE";
+                categoria = CategoriaGramatical.SIGNO_DE_PREGUNTA_ABRE;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2664,7 +2687,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "SIGNO DE PREGUNTA CIERRA";
+                categoria = CategoriaGramatical.SIGNO_DE_PREGUNTA_CIERRA;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2819,7 +2842,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "GUION BAJO";
+                categoria = CategoriaGramatical.GUION_BAJO;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2836,7 +2859,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "MAYOR QUE";
+                categoria = CategoriaGramatical.MAYOR_QUE;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2853,7 +2876,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "MENOR QUE";
+                categoria = CategoriaGramatical.MENOR_QUE;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2869,7 +2892,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "SUPERINDICE A";
+                categoria = CategoriaGramatical.SUPERINDICE_A;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2886,7 +2909,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "SUPERINDICE O";
+                categoria = CategoriaGramatical.SUPERINDICE_0;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2904,7 +2927,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "VERGULILLA";
+                categoria = CategoriaGramatical.VERGULILLA;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2922,7 +2945,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "COMILLA ABRE";
+                categoria = CategoriaGramatical.COMILLA_ABRE;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2939,7 +2962,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "COMILLA CIERRA";
+                categoria = CategoriaGramatical.COMILLA_CIERRA;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2957,7 +2980,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = "CARACTER ESPACIO";
+                categoria = CategoriaGramatical.ESPACIO;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }

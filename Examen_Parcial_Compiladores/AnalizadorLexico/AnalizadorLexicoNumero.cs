@@ -100,6 +100,13 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Error error = Error.CREAR_ERROR_LEXICO_STOPPER(numeroLineaActual, posicionInicial, lexema, falla, causa, solucion);
             ManejadorErrores.ObtenerManejadorErrores().ReportarError(error);
         }
+        private void DevorarEspaciosBlanco()
+        {
+            while ("".Equals(caracterActual.Trim()) || caracterActual.Equals("\t") || caracterActual.Equals(" "))
+            {
+                LeerSiguienteCaracter();
+            }
+        }
 
         public ComponenteLexico DevolverSiguienteComponente()
         {
@@ -200,6 +207,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
                 else if ("q91".Equals(estadoActual)) { ProcesarEstado91(); }
                 else if ("q92".Equals(estadoActual)) { ProcesarEstado92(); }
                 else if ("q93".Equals(estadoActual)) { ProcesarEstado93(); }
+                else if ("q98".Equals(estadoActual)) { ProcesarEstado98(); }
                 else if ("q99".Equals(estadoActual)) { ProcesarEstado99(); }
                 else { ProcesarEstado82(); }
 
@@ -215,7 +223,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             LeerSiguienteCaracter();
             if (" ".Equals(caracterActual))
             {
-                throw new Exception("Separacion entre caracteres invalida");
+                estadoActual = "98";
             }
             else
             {
@@ -1096,6 +1104,20 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             FormarComponenteLexico();
             continuarAnalisis = false;
+
+        }
+        private void ProcesarEstado98()
+        {
+
+            /* falla = "Caracter no valido";
+             causa = "Se agrego mas de un separador espacio entre numeros";
+             solucion = "Asegurese de colocar correctamente los espacios";
+             DevorarEspaciosBlanco();
+             ReportarErrorLexicoRecuperable();*/
+            falla = "Caracter no valido";
+            causa = "Se agrego mas de un separador espacio entre numeros";
+            solucion = "Asegurese de colocar correctamente los espacios";
+            ReportarErrorLexicoStopper();
 
         }
 

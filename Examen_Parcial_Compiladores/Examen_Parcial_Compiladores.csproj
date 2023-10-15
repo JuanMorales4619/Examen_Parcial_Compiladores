@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="AnalizadorLexico\AnalizadorLexicoNumero.cs" />
     <Compile Include="AnalizadorLexico\AnalizadorLexicoPunto.cs" />
-    <Compile Include="AnalizadorLexico\AnalizadorTextoNumero.cs" />
+    <Compile Include="AnalizadorLexico\AnalizadorLexicoLetra.cs" />
     <Compile Include="AnalizadorLexico\CategoriaGramatical.cs" />
     <Compile Include="AnalizadorLexico\ComponenteLexico.cs" />
     <Compile Include="AnalizadorLexico\TipoComponente.cs" />
