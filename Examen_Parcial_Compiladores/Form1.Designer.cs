@@ -51,8 +51,10 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
             this.AnalisisLexico.SuspendLayout();
             this.Analisis_Lexico.SuspendLayout();
+            this.Errores.SuspendLayout();
             this.Tablas.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -204,6 +206,7 @@
             // 
             // Errores
             // 
+            this.Errores.Controls.Add(this.textBox7);
             this.Errores.Location = new System.Drawing.Point(4, 22);
             this.Errores.Name = "Errores";
             this.Errores.Padding = new System.Windows.Forms.Padding(3);
@@ -310,6 +313,14 @@
             this.textBox6.Size = new System.Drawing.Size(490, 397);
             this.textBox6.TabIndex = 0;
             // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(127, 27);
+            this.textBox7.Multiline = true;
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(557, 471);
+            this.textBox7.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -322,6 +333,8 @@
             this.AnalisisLexico.ResumeLayout(false);
             this.Analisis_Lexico.ResumeLayout(false);
             this.Analisis_Lexico.PerformLayout();
+            this.Errores.ResumeLayout(false);
+            this.Errores.PerformLayout();
             this.Tablas.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -361,6 +374,7 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox7;
     }
 }
 

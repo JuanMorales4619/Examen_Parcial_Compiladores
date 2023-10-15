@@ -1,5 +1,6 @@
 ﻿using Examen_Parcial_Compiladores.AnalizadorLexico;
 using Examen_Parcial_Compiladores.Cache;
+using Examen_Parcial_Compiladores.GestorErrores;
 using Examen_Parcial_Compiladores.TablaComponentes;
 using Examen_Parcial_Compiladores.Traduccion;
 using System;
@@ -118,6 +119,8 @@ namespace Examen_Parcial_Compiladores
 
         private void btnCompilar_Click(object sender, EventArgs e)
         {
+            TablaMaestra.ObtenerTablaMaestra().Limpiar();
+            ManejadorErrores.ObtenerManejadorErrores().Limpiar();
             textBox2.Text = "";
             textBox1.Text = "";
             if(comboBox1.SelectedIndex == 2)
@@ -240,17 +243,18 @@ namespace Examen_Parcial_Compiladores
 
                 } while (!CategoriaGramatical.FIN_ARCHIVO.Equals(componente.Categoria));
 
-                LlenarTablas();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error de compilacion: " + ex.Message);
             }
+            finally
+            {
+                LlenarTablas();
+                ImprimirErrores(TipoError.LEXICO, textBox7);
+            }
 
         }
-
-        
 
         private  void NumeroPunto()
         {
@@ -266,11 +270,19 @@ namespace Examen_Parcial_Compiladores
 
                 } while (!CategoriaGramatical.FIN_ARCHIVO.Equals(componente.Categoria));
                 LlenarTablas();
+                ImprimirErrores(TipoError.LEXICO, textBox7);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error de compilacion: " + ex.Message);
+                ImprimirErrores(TipoError.LEXICO, textBox7);
+                MessageBox.Show( ex.Message);
             }
+            finally
+            {
+                LlenarTablas();
+                ImprimirErrores(TipoError.LEXICO, textBox7);
+            }
+
 
         }
 
@@ -290,6 +302,19 @@ namespace Examen_Parcial_Compiladores
             foreach (ComponenteLexico componente in componentes)
             {
                 box.Text = box.Text + " " + componente.ToString() + Environment.NewLine;
+            }
+            box.Text = box.Text + "\n************FIN COMPONENTES " + tipo.ToString() + "*******************\r\n";
+        }
+
+
+        private void ImprimirErrores(TipoError tipo, System.Windows.Forms.TextBox box)
+        {
+            box.Text = "************INICIO ERRORES " + tipo.ToString() + "*******************\r\n";
+
+            List<Error> erroes = ManejadorErrores.ObtenerManejadorErrores().ObtenerErrores(tipo);
+            foreach (Error error in erroes)
+            {
+                box.Text = box.Text + " " + error.ToString() + Environment.NewLine;
             }
             box.Text = box.Text + "\n************FIN COMPONENTES " + tipo.ToString() + "*******************\r\n";
         }

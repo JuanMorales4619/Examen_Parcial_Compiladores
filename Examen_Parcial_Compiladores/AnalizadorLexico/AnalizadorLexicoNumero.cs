@@ -1,4 +1,5 @@
 ﻿using Examen_Parcial_Compiladores.Cache;
+using Examen_Parcial_Compiladores.GestorErrores;
 using Examen_Parcial_Compiladores.TablaComponentes;
 using Examen_Parcial_Compiladores.Util;
 using System;
@@ -24,6 +25,9 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         private bool continuarAnalisis = false;
         private ComponenteLexico componente = null;
         private TipoComponente tipo = TipoComponente.SIMBOLO;
+        private string falla = "";
+        private string causa = "";
+        private string solucion = "";
 
         public AnalizadorLexicoNumero()
         {
@@ -83,6 +87,18 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         {
             posicionInicial = puntero - lexema.Length;  
             componente = ComponenteLexico.CREAR_LITERAL(numeroLineaActual, posicionInicial, lexema, categoria);
+        }
+        private void ReportarErrorLexicoRecuperable()
+        {
+            posicionInicial = puntero - lexema.Length;
+            Error error = Error.CREAR_ERROR_LEXICO_RECUPERABLE(numeroLineaActual, posicionInicial, lexema, falla, causa, solucion);
+            ManejadorErrores.ObtenerManejadorErrores().ReportarError(error);
+        }
+        private void ReportarErrorLexicoStopper()
+        {
+            posicionInicial = puntero - lexema.Length;
+            Error error = Error.CREAR_ERROR_LEXICO_STOPPER(numeroLineaActual, posicionInicial, lexema, falla, causa, solucion);
+            ManejadorErrores.ObtenerManejadorErrores().ReportarError(error);
         }
 
         public ComponenteLexico DevolverSiguienteComponente()
@@ -983,9 +999,11 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado82()
         {
-            categoria = CategoriaGramatical.NO_DEFINIDA;
-            tipo = TipoComponente.SIMBOLO;
-            throw new Exception("Caracter no reconocido por el sistema");
+            falla = "Caracter no valido";
+            causa = "El calracter: "+caracterActual+" no esta reconocido por el sistema";
+            solucion = "Asegurese de ingresar un digito valido";
+            ReportarErrorLexicoStopper();
+            continuarAnalisis = false;
         }
         private void ProcesarEstado83()
         {
