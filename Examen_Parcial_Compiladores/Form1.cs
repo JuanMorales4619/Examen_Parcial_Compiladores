@@ -1,5 +1,6 @@
 ﻿using Examen_Parcial_Compiladores.AnalizadorLexico;
 using Examen_Parcial_Compiladores.Cache;
+using Examen_Parcial_Compiladores.TablaComponentes;
 using Examen_Parcial_Compiladores.Traduccion;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,20 @@ namespace Examen_Parcial_Compiladores
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -225,6 +240,8 @@ namespace Examen_Parcial_Compiladores
 
                 } while (!CategoriaGramatical.FIN_ARCHIVO.Equals(componente.Categoria));
 
+                LlenarTablas();
+
             }
             catch (Exception ex)
             {
@@ -232,6 +249,9 @@ namespace Examen_Parcial_Compiladores
             }
 
         }
+
+        
+
         private  void NumeroPunto()
         {
             textBox2.Text = "";
@@ -245,7 +265,7 @@ namespace Examen_Parcial_Compiladores
                     componente = anaLex.DevolverSiguienteComponente();
 
                 } while (!CategoriaGramatical.FIN_ARCHIVO.Equals(componente.Categoria));
-
+                LlenarTablas();
             }
             catch (Exception ex)
             {
@@ -254,10 +274,32 @@ namespace Examen_Parcial_Compiladores
 
         }
 
+
+        private void LlenarTablas()
+        {
+            Imprimir(TipoComponente.SIMBOLO, textBox3);
+            Imprimir(TipoComponente.PALABRA_RESERVADA, textBox4);
+            Imprimir(TipoComponente.DUMMY, textBox5);
+            Imprimir(TipoComponente.LITERAL, textBox6);
+        }
+        private void Imprimir(TipoComponente tipo, System.Windows.Forms.TextBox box)
+        {
+            box.Text = "************INICIO COMPONENTES "+ tipo.ToString()+"*******************\r\n";
+
+            List<ComponenteLexico> componentes = TablaMaestra.ObtenerTablaMaestra().ObtenerTodosSimbolo(tipo);
+            foreach (ComponenteLexico componente in componentes)
+            {
+                box.Text = box.Text + " " + componente.ToString() + Environment.NewLine;
+            }
+            box.Text = box.Text + "\n************FIN COMPONENTES " + tipo.ToString() + "*******************\r\n";
+        }
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             textBox1.Enabled = false;
             textBox1.Visible = true;
         }
+
+        
     }
 }

@@ -22,7 +22,6 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         private string estadoActual = "";
         private int posicionInicial = 0;
         private bool continuarAnalisis = false;
-        private string resultado = "";
         private ComponenteLexico componente = null;
         private TipoComponente tipo = TipoComponente.SIMBOLO;
 
@@ -77,16 +76,13 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             posicionInicial = 0;
             caracterActual = "";
             continuarAnalisis = true;
-            resultado = "";
             componente = null;
-            tipo = TipoComponente.SIMBOLO;
+            tipo = TipoComponente.LITERAL;
         }
         private void FormarComponenteLexico()
         {
-            posicionInicial = puntero - lexema.Length;
-
-            
-            componente = ComponenteLexico.CREAR_SIMBOLO(numeroLineaActual, posicionInicial, lexema, categoria);
+            posicionInicial = puntero - lexema.Length;  
+            componente = ComponenteLexico.CREAR_LITERAL(numeroLineaActual, posicionInicial, lexema, categoria);
         }
 
         public ComponenteLexico DevolverSiguienteComponente()
@@ -294,7 +290,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             continuarAnalisis = false;
         }
         private void ProcesarEstado7()
-        {
+        {  
             categoria = CategoriaGramatical.LETRA_F;
             Concatenar();
             FormarComponenteLexico();

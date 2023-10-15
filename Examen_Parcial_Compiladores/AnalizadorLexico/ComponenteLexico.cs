@@ -40,7 +40,10 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         {
             return new ComponenteLexico(numeroLinea, posicionInicial, posicionInicial + lexema.Length, lexema, categoria, TipoComponente.LITERAL);
         }
-
+        public static ComponenteLexico CREAR(int numeroLinea, int posicionInicial, string lexema, CategoriaGramatical categoria,TipoComponente tipo)
+        {
+            return new ComponenteLexico(numeroLinea, posicionInicial, posicionInicial + lexema.Length, lexema, categoria, tipo);
+        }
         public int NumeroLinea { get => numeroLinea; set => numeroLinea = value; }
         public int PosicionInicial { get => posicionInicial; set => posicionInicial = (value < 0) ? 1 : value; }
         public int PosicionFinal { get => posicionFinal; set => posicionFinal = (value < 0 )? 1: value; }
