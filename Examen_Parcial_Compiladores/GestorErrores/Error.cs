@@ -44,6 +44,18 @@ namespace Examen_Parcial_Compiladores.GestorErrores
             return new Error(numeroLinea, posicionInicial, posicionInicial + lexema.Length, lexema, falla, causa
                 , solucion, TipoError.LEXICO, CategoriaError.STOPPER);
         }
+        public static Error CREAR_ERROR_SINTACTICO_RECUPERABLE(int numeroLinea, int posicionInicial,
+            string lexema, string falla, string causa, string solucion)
+        {
+            return new Error(numeroLinea, posicionInicial, posicionInicial + lexema.Length, lexema, falla, causa
+                , solucion, TipoError.SINTACTICO, CategoriaError.RECUPERABLE);
+        }
+        public static Error CREAR_ERROR_SINTACTICO_STOPPER(int numeroLinea, int posicionInicial,
+            string lexema, string falla, string causa, string solucion)
+        {
+            return new Error(numeroLinea, posicionInicial, posicionInicial + lexema.Length, lexema, falla, causa
+                , solucion, TipoError.SINTACTICO, CategoriaError.STOPPER);
+        }
 
 
         public int NumeroLinea { get => numeroLinea; set => numeroLinea = value; }

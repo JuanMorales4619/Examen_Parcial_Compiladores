@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnalisisSintactico\AnalizadorSintactico.cs" />
     <Compile Include="AnalizadorLexico\AnalizadorLexicoNumero.cs" />
     <Compile Include="AnalizadorLexico\AnalizadorLexicoPunto.cs" />
     <Compile Include="AnalizadorLexico\AnalizadorLexicoLetra.cs" />
