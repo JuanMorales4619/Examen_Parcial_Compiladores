@@ -41,36 +41,37 @@
             this.AnalisisLexico = new System.Windows.Forms.TabControl();
             this.Analisis_Lexico = new System.Windows.Forms.TabPage();
             this.Errores = new System.Windows.Forms.TabPage();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.textBox9 = new System.Windows.Forms.TextBox();
             this.Tablas = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.textBox5 = new System.Windows.Forms.TextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
             this.AnalisisLexico.SuspendLayout();
             this.Analisis_Lexico.SuspendLayout();
             this.Errores.SuspendLayout();
+            this.tabControl2.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.tabPage7.SuspendLayout();
             this.Tablas.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            this.tabControl2.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            this.tabPage6.SuspendLayout();
-            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -137,7 +138,7 @@
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(277, 347);
+            this.textBox2.Size = new System.Drawing.Size(277, 37);
             this.textBox2.TabIndex = 5;
             // 
             // btnCargar1
@@ -179,6 +180,7 @@
             this.textBox1.Location = new System.Drawing.Point(21, 319);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(255, 182);
             this.textBox1.TabIndex = 9;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -196,6 +198,7 @@
             // 
             // Analisis_Lexico
             // 
+            this.Analisis_Lexico.Controls.Add(this.textBox10);
             this.Analisis_Lexico.Controls.Add(this.label1);
             this.Analisis_Lexico.Controls.Add(this.textBox1);
             this.Analisis_Lexico.Controls.Add(this.comboBox1);
@@ -213,6 +216,7 @@
             this.Analisis_Lexico.TabIndex = 0;
             this.Analisis_Lexico.Text = "Analisis lexico";
             this.Analisis_Lexico.UseVisualStyleBackColor = true;
+            this.Analisis_Lexico.Click += new System.EventHandler(this.Analisis_Lexico_Click);
             // 
             // Errores
             // 
@@ -225,6 +229,77 @@
             this.Errores.Text = "Errorres";
             this.Errores.UseVisualStyleBackColor = true;
             this.Errores.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Controls.Add(this.tabPage5);
+            this.tabControl2.Controls.Add(this.tabPage6);
+            this.tabControl2.Controls.Add(this.tabPage7);
+            this.tabControl2.Location = new System.Drawing.Point(6, 6);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(839, 520);
+            this.tabControl2.TabIndex = 1;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.textBox7);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(831, 494);
+            this.tabPage5.TabIndex = 0;
+            this.tabPage5.Text = "Lexico";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(119, 24);
+            this.textBox7.Multiline = true;
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(534, 464);
+            this.textBox7.TabIndex = 0;
+            this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.textBox8);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(831, 494);
+            this.tabPage6.TabIndex = 1;
+            this.tabPage6.Text = "Sintactico";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(97, 6);
+            this.textBox8.Multiline = true;
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(569, 488);
+            this.textBox8.TabIndex = 0;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.textBox9);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(831, 494);
+            this.tabPage7.TabIndex = 2;
+            this.tabPage7.Text = "Semantico";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(114, 3);
+            this.textBox9.Multiline = true;
+            this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
+            this.textBox9.Size = new System.Drawing.Size(579, 488);
+            this.textBox9.TabIndex = 0;
             // 
             // Tablas
             // 
@@ -260,6 +335,15 @@
             this.tabPage1.Text = "Simbolo";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(131, 60);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(473, 364);
+            this.textBox3.TabIndex = 0;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.textBox4);
@@ -271,6 +355,15 @@
             this.tabPage2.Text = "Palabra reservada";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(124, 37);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(500, 386);
+            this.textBox4.TabIndex = 0;
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.textBox5);
@@ -280,6 +373,15 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Dummy";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(136, 25);
+            this.textBox5.Multiline = true;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(484, 415);
+            this.textBox5.TabIndex = 0;
             // 
             // tabPage4
             // 
@@ -291,105 +393,23 @@
             this.tabPage4.Text = "Literal";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(131, 60);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(473, 364);
-            this.textBox3.TabIndex = 0;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(124, 37);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(500, 386);
-            this.textBox4.TabIndex = 0;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(136, 25);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(484, 415);
-            this.textBox5.TabIndex = 0;
-            // 
             // textBox6
             // 
             this.textBox6.Location = new System.Drawing.Point(116, 30);
             this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(490, 397);
             this.textBox6.TabIndex = 0;
             // 
-            // tabControl2
+            // textBox10
             // 
-            this.tabControl2.Controls.Add(this.tabPage5);
-            this.tabControl2.Controls.Add(this.tabPage6);
-            this.tabControl2.Controls.Add(this.tabPage7);
-            this.tabControl2.Location = new System.Drawing.Point(6, 6);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(839, 520);
-            this.tabControl2.TabIndex = 1;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.textBox7);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(831, 494);
-            this.tabPage5.TabIndex = 0;
-            this.tabPage5.Text = "Lexico";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.textBox8);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(831, 494);
-            this.tabPage6.TabIndex = 1;
-            this.tabPage6.Text = "Sintactico";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(119, 24);
-            this.textBox7.Multiline = true;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(534, 464);
-            this.textBox7.TabIndex = 0;
-            this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
-            // 
-            // tabPage7
-            // 
-            this.tabPage7.Controls.Add(this.textBox9);
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(831, 494);
-            this.tabPage7.TabIndex = 2;
-            this.tabPage7.Text = "Semantico";
-            this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(97, 6);
-            this.textBox8.Multiline = true;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(569, 488);
-            this.textBox8.TabIndex = 0;
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(114, 3);
-            this.textBox9.Multiline = true;
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(579, 488);
-            this.textBox9.TabIndex = 0;
+            this.textBox10.Location = new System.Drawing.Point(442, 208);
+            this.textBox10.Multiline = true;
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(277, 223);
+            this.textBox10.TabIndex = 10;
             // 
             // Form1
             // 
@@ -404,6 +424,13 @@
             this.Analisis_Lexico.ResumeLayout(false);
             this.Analisis_Lexico.PerformLayout();
             this.Errores.ResumeLayout(false);
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
             this.Tablas.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -414,13 +441,6 @@
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
-            this.tabControl2.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage5.PerformLayout();
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage6.PerformLayout();
-            this.tabPage7.ResumeLayout(false);
-            this.tabPage7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -457,6 +477,7 @@
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox textBox10;
     }
 }
 

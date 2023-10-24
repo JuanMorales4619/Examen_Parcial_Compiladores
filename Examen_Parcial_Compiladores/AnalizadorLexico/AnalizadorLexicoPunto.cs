@@ -2980,7 +2980,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = CategoriaGramatical.ESPACIO;
+                categoria = CategoriaGramatical.SIGNO_ESPACIO;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }

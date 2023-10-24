@@ -1,4 +1,5 @@
-﻿using Examen_Parcial_Compiladores.AnalizadorLexico;
+﻿using Examen_Parcial_Compiladores.AnalisisSintactico;
+using Examen_Parcial_Compiladores.AnalizadorLexico;
 using Examen_Parcial_Compiladores.Cache;
 using Examen_Parcial_Compiladores.GestorErrores;
 using Examen_Parcial_Compiladores.TablaComponentes;
@@ -82,10 +83,17 @@ namespace Examen_Parcial_Compiladores
             }
         }
 
-        private void btnCargar(object sender, EventArgs e)
+        private void resetear()
         {
             textBox2.Text = "";
             textBox1.Text = "";
+            TablaMaestra.ObtenerTablaMaestra().Limpiar();
+            ManejadorErrores.ObtenerManejadorErrores().Limpiar();
+            
+        }
+        private void btnCargar(object sender, EventArgs e)
+        {
+            resetear();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Archivos de texto (*.txt)|*.txt";
 
@@ -99,13 +107,14 @@ namespace Examen_Parcial_Compiladores
                 {
                     string[] contenido = File.ReadAllLines(rutaArchivo);
                     int lineNumber = 1;
-
+                    DataCache.Limpiar();
+                    DataCache.AgregarLienas(contenido);
                     foreach (string cadena in contenido)
                     {
                         textBox1.AppendText(lineNumber + ": " + cadena + Environment.NewLine);
                         lineNumber++;
                     }
-                    DataCache.AgregarLienas(contenido);
+                    
                     label3.Text = "Archivo cargado correctamente";
                     label3.Enabled = true;
                     label3.Visible = true;
@@ -119,10 +128,7 @@ namespace Examen_Parcial_Compiladores
 
         private void btnCompilar_Click(object sender, EventArgs e)
         {
-            TablaMaestra.ObtenerTablaMaestra().Limpiar();
-            ManejadorErrores.ObtenerManejadorErrores().Limpiar();
-            textBox2.Text = "";
-            textBox1.Text = "";
+            resetear();
             if(comboBox1.SelectedIndex == 2)
             {
                 string[] lineas = EntradaManual.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
@@ -148,15 +154,10 @@ namespace Examen_Parcial_Compiladores
             textBox2.Text = "";
             try
             {
-                AnalizadorLexicoLetra anaLex = new AnalizadorLexicoLetra();
-                ComponenteLexico componente = anaLex.DevolverSiguienteComponente();
-                do
-                {
-                    textBox2.Text = textBox2.Text + " " + componente.ToString() + Environment.NewLine;
-                    componente = anaLex.DevolverSiguienteComponente();
-
-                } while (!CategoriaGramatical.FIN_ARCHIVO.Equals(componente.Categoria));
-
+                AnalizadorSintactico anaLex = new AnalizadorSintactico();
+                List<string> componente = anaLex.Analizar(1);
+                textBox2.Text = componente[0];
+                textBox10.Text = componente[1];
             }
             catch (Exception ex)
             {
@@ -173,14 +174,10 @@ namespace Examen_Parcial_Compiladores
             textBox2.Text = "";
             try
             {
-                AnalizadorLexicoLetra anaLex = new AnalizadorLexicoLetra();
-                ComponenteLexico componente = anaLex.DevolverSiguienteComponente();
-                do
-                {
-                    textBox2.Text = textBox2.Text + " " + componente.ToString() + Environment.NewLine;
-                    componente = anaLex.DevolverSiguienteComponente();
-
-                } while (!CategoriaGramatical.FIN_ARCHIVO.Equals(componente.Categoria));
+                AnalizadorSintactico anaLex = new AnalizadorSintactico();
+                List<string> componente = anaLex.Analizar(2);
+                textBox2.Text = componente[0];
+                textBox10.Text = componente[1];
 
             }
             catch (Exception ex)
@@ -198,14 +195,10 @@ namespace Examen_Parcial_Compiladores
             textBox2.Text = "";
             try
             {
-                AnalizadorLexicoPunto anaLex = new AnalizadorLexicoPunto();
-                ComponenteLexico componente = anaLex.DevolverSiguienteComponente();
-                do
-                {
-                    textBox2.Text = textBox2.Text + " " + componente.ToString() + Environment.NewLine;
-                    componente = anaLex.DevolverSiguienteComponente();
-
-                } while (!CategoriaGramatical.FIN_ARCHIVO.Equals(componente.Categoria));
+                AnalizadorSintactico anaLex = new AnalizadorSintactico();
+                List<string> componente = anaLex.Analizar(5);
+                textBox2.Text = componente[0];
+                textBox10.Text = componente[1];
 
             }
             catch (Exception ex)
@@ -224,15 +217,10 @@ namespace Examen_Parcial_Compiladores
             textBox2.Text = "";
             try
             {
-                AnalizadorLexicoPunto anaLex = new AnalizadorLexicoPunto();
-                ComponenteLexico componente = anaLex.DevolverSiguienteComponente();
-                do
-                {
-                    textBox2.Text = textBox2.Text + " " + componente.ToString() + Environment.NewLine;
-                    componente = anaLex.DevolverSiguienteComponente();
-
-                } while (!CategoriaGramatical.FIN_ARCHIVO.Equals(componente.Categoria));
-
+                AnalizadorSintactico anaLex = new AnalizadorSintactico();
+                List<string> componente = anaLex.Analizar(6);
+                textBox2.Text = componente[0];
+                textBox10.Text = componente[1];
             }
             catch (Exception ex)
             {
@@ -250,14 +238,11 @@ namespace Examen_Parcial_Compiladores
             textBox2.Text = "";
             try
             {
-                AnalizadorLexicoNumero anaLex = new AnalizadorLexicoNumero();
-                ComponenteLexico componente = anaLex.DevolverSiguienteComponente();
-                do
-                {
-                    textBox2.Text = textBox2.Text + " " + componente.ToString()+ Environment.NewLine;
-                    componente = anaLex.DevolverSiguienteComponente();
+                AnalizadorSintactico anaLex = new AnalizadorSintactico();
+                List<string> componente = anaLex.Analizar(3);
+                textBox2.Text = componente[0];
+                textBox10.Text = componente[1];
 
-                } while (!CategoriaGramatical.FIN_ARCHIVO.Equals(componente.Categoria));
 
             }
             catch (Exception ex)
@@ -277,14 +262,11 @@ namespace Examen_Parcial_Compiladores
             textBox2.Text = "";
             try
             {
-                AnalizadorLexicoNumero anaLex = new AnalizadorLexicoNumero();
-                ComponenteLexico componente = anaLex.DevolverSiguienteComponente();
-                do
-                {
-                    textBox2.Text = textBox2.Text + " " + componente.ToString() + Environment.NewLine;
-                    componente = anaLex.DevolverSiguienteComponente();
+                AnalizadorSintactico anaLex = new AnalizadorSintactico();
+                List<string> componente = anaLex.Analizar(4);
+                textBox2.Text = componente[0];
+                textBox10.Text = componente[1];
 
-                } while (!CategoriaGramatical.FIN_ARCHIVO.Equals(componente.Categoria));
             }
             catch (Exception ex)
             {
@@ -344,6 +326,11 @@ namespace Examen_Parcial_Compiladores
         }
 
         private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Analisis_Lexico_Click(object sender, EventArgs e)
         {
 
         }
