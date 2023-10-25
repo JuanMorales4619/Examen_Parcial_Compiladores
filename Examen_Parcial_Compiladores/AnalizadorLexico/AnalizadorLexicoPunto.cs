@@ -1287,7 +1287,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         {
             Concatenar();
             LeerSiguienteCaracter();
-            if (caracterActual.Equals(".")) { estadoActual = "q70"; }
+            if (caracterActual.Equals(".")) { estadoActual = "q71"; }
             else if (caracterActual.Equals(" ") || caracterActual.Equals("@FL@")) { estadoActual = "q79"; }
             else
             {
@@ -1299,7 +1299,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         {
             Concatenar();
             LeerSiguienteCaracter();
-            if (caracterActual.Equals(".")) { estadoActual = "q71"; }
+            if (caracterActual.Equals(".")) { estadoActual = "q72"; }
             else if (caracterActual.Equals(" ") || caracterActual.Equals("@FL@")) { estadoActual = "q80"; }
             else
             {
@@ -1310,7 +1310,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         {
             Concatenar();
             LeerSiguienteCaracter();
-            if (caracterActual.Equals(".")) { estadoActual = "q72"; }
+            if (caracterActual.Equals(".")) { estadoActual = "q73"; }
             else if (caracterActual.Equals(" ") || caracterActual.Equals("@FL@")) { estadoActual = "q81"; }
             else
             {
@@ -1322,7 +1322,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         {
             Concatenar();
             LeerSiguienteCaracter();
-            if (caracterActual.Equals(".")) { estadoActual = "q73"; }
+            if (caracterActual.Equals(".")) { estadoActual = "q74"; }
             else if (caracterActual.Equals(" ") || caracterActual.Equals("@FL@")) { estadoActual = "q82"; }
             else
             {
@@ -1334,7 +1334,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         {
             Concatenar();
             LeerSiguienteCaracter();
-            if (caracterActual.Equals(".")) { estadoActual = "q74"; }
+            if (caracterActual.Equals(".")) { estadoActual = "q75"; }
             else if (caracterActual.Equals(" ") || caracterActual.Equals("@FL@")) { estadoActual = "q83"; }
             else
             {
@@ -1346,7 +1346,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         {
             Concatenar();
             LeerSiguienteCaracter();
-            if (caracterActual.Equals(".")) { estadoActual = "q75"; }
+            if (caracterActual.Equals(".")) { estadoActual = "q76"; }
             else if (caracterActual.Equals(" ") || caracterActual.Equals("@FL@")) { estadoActual = "q84"; }
             else
             {
@@ -1359,7 +1359,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         {
             Concatenar();
             LeerSiguienteCaracter();
-            if (caracterActual.Equals(".")) { estadoActual = "q76"; }
+            if (caracterActual.Equals(".")) { estadoActual = "q999"; }
             else if (caracterActual.Equals(" ") || caracterActual.Equals("@FL@")) { estadoActual = "q85"; }
             else
             {
@@ -2621,7 +2621,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = CategoriaGramatical.EXCLAMACION_ABRE;
+                categoria = CategoriaGramatical.ACENTO_CIRCUNFLEJO;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2636,7 +2636,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = CategoriaGramatical.EXCLAMACION_CIERRA;
+                categoria = CategoriaGramatical.EXCLAMACION_ABRE;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }
@@ -2652,7 +2652,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             if (" ".Equals(caracterActual) || "@FL@".Equals(caracterActual))
             {
                 DevolverPuntero();
-                categoria = CategoriaGramatical.SIGNO_DE_PREGUNTA_ABRE;
+                categoria = CategoriaGramatical.EXCLAMACION_CIERRA;
                 FormarComponenteLexico();
                 continuarAnalisis = false;
             }

@@ -84,7 +84,7 @@ namespace Examen_Parcial_Compiladores.AnalisisSintactico
             //muchas categorias
             Texto texto = new Texto();
             traduccion = traduccion + texto.DevolverCaracterTraducido(componente.Categoria, cont);
-            
+            traduccion.Trim();
         }
     }
 }

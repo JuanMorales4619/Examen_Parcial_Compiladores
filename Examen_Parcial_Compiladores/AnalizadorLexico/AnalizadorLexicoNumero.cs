@@ -533,15 +533,15 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
 
             Concatenar();
             LeerSiguienteCaracter();
-            if (caracterActual.Equals("1")) { estadoActual = "q31"; }
-            else if (caracterActual.Equals("2")) { estadoActual = "q32"; }
-            else if (caracterActual.Equals("3")) { estadoActual = "q33"; }
-            else if (caracterActual.Equals("4")) { estadoActual = "q34"; }
-            else if (caracterActual.Equals("5")) { estadoActual = "q35"; }
-            else if (caracterActual.Equals("6")) { estadoActual = "q36"; }
-            else if (caracterActual.Equals("7")) { estadoActual = "q37"; }
-            else if (caracterActual.Equals("8")) { estadoActual = "q38"; }
-            else if (caracterActual.Equals("9")) { estadoActual = "q39"; }
+            if (caracterActual.Equals("1")) { estadoActual = "q32"; }
+            else if (caracterActual.Equals("2")) { estadoActual = "q33"; }
+            else if (caracterActual.Equals("3")) { estadoActual = "q34"; }
+            else if (caracterActual.Equals("4")) { estadoActual = "q35"; }
+            else if (caracterActual.Equals("5")) { estadoActual = "q36"; }
+            else if (caracterActual.Equals("6")) { estadoActual = "q37"; }
+            else if (caracterActual.Equals("7")) { estadoActual = "q38"; }
+            else if (caracterActual.Equals("8")) { estadoActual = "q39"; }
+            else if (caracterActual.Equals("9")) { estadoActual = "q40"; }
             else
             {
                 estadoActual = "q82";
@@ -714,7 +714,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         {
             Concatenar();
             LeerSiguienteCaracter();
-            if (caracterActual.Equals("1")) { estadoActual = "q45"; }
+            if (caracterActual.Equals("1")) { estadoActual = "q52"; }
             else if (caracterActual.Equals("2")) { estadoActual = "q53"; }
             else if (caracterActual.Equals("3")) { estadoActual = "q54"; }
             else if (caracterActual.Equals("4")) { estadoActual = "q55"; }
