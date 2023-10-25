@@ -614,7 +614,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado40()
         {
-            categoria = CategoriaGramatical.Digito_1;
+            categoria = CategoriaGramatical.Digito_2;
             Concatenar();
             FormarComponenteLexico();
             continuarAnalisis = false;
