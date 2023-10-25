@@ -407,7 +407,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
 
             else
             {
-                estadoActual = "q1000";
+                estadoActual = "q999";
             }
         }
         private void ProcesarEstado2()
@@ -610,7 +610,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(" ") || caracterActual.Equals("@FL@")) { estadoActual = "q28"; }
-            else if (caracterActual.Equals(".")) { estadoActual = "q1000";}
+            else if (caracterActual.Equals(".") ) { estadoActual = "q1000";}
             else
             {
                 estadoActual = "q999";

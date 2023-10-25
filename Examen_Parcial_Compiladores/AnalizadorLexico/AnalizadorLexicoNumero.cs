@@ -240,7 +240,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
                 else if ("9".Equals(caracterActual)) { estadoActual = "q81"; }
                 else if (UtilTexto.EsFinLinea(caracterActual)) { estadoActual = "q83"; }
                 else if (UtilTexto.EsFinArchivo(caracterActual)) { estadoActual = "q84"; }
-                else { estadoActual = "q98"; }
+                else { estadoActual = "q82"; }
             }
         }
         private void ProcesarEstado97()
@@ -294,16 +294,19 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             else if (caracterActual.Equals("9")) { estadoActual = "q10"; }
             else if (caracterActual.Equals(" ")) { estadoActual = "q97"; }
             else
-            {
+            { 
                 estadoActual = "q82";
+                
             }
-            LeerSiguienteCaracter();
-            if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
+            if (estadoActual.Equals("q1"))
             {
-                estadoActual = "q100";
+                LeerSiguienteCaracter();
+                if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
+                {
+                    estadoActual = "q100";
+                }
+                DevolverPuntero();
             }
-            DevolverPuntero();
-
 
         }
         private void ProcesarEstado2()
@@ -390,12 +393,15 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
                 estadoActual = "q82";
             }
 
-            LeerSiguienteCaracter();
-            if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
+            if (estadoActual.Equals("q11"))
             {
-                estadoActual = "q100";
+                LeerSiguienteCaracter();
+                if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
+                {
+                    estadoActual = "q100";
+                }
+                DevolverPuntero();
             }
-            DevolverPuntero();
 
 
         }
@@ -495,12 +501,15 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
                 estadoActual = "q82";
             }
 
-            LeerSiguienteCaracter();
-            if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
+            if (estadoActual.Equals("q21"))
             {
-                estadoActual = "q100";
+                LeerSiguienteCaracter();
+                if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
+                {
+                    estadoActual = "q100";
+                }
+                DevolverPuntero();
             }
-            DevolverPuntero();
         }
         private void ProcesarEstado22()
         {
@@ -595,12 +604,15 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
                 estadoActual = "q82";
             }
 
-            LeerSiguienteCaracter();
-            if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
+            if (estadoActual.Equals("q31"))
             {
-                estadoActual = "q100";
+                LeerSiguienteCaracter();
+                if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
+                {
+                    estadoActual = "q100";
+                }
+                DevolverPuntero();
             }
-            DevolverPuntero();
 
         }
         private void ProcesarEstado32()
@@ -695,12 +707,15 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
                 estadoActual = "q82";
             }
 
-            LeerSiguienteCaracter();
-            if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
+            if (estadoActual.Equals("q41"))
             {
-                estadoActual = "q100";
+                LeerSiguienteCaracter();
+                if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
+                {
+                    estadoActual = "q100";
+                }
+                DevolverPuntero();
             }
-            DevolverPuntero();
         }
         private void ProcesarEstado42()
         {
@@ -794,12 +809,15 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
                 estadoActual = "q82";
             }
 
-            LeerSiguienteCaracter();
-            if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
+            if (estadoActual.Equals("q51"))
             {
-                estadoActual = "q100";
+                LeerSiguienteCaracter();
+                if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
+                {
+                    estadoActual = "q100";
+                }
+                DevolverPuntero();
             }
-            DevolverPuntero();
         }
         private void ProcesarEstado52()
         {
@@ -892,12 +910,15 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
                 estadoActual = "q82";
             }
 
-            LeerSiguienteCaracter();
-            if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
+            if (estadoActual.Equals("q61"))
             {
-                estadoActual = "q100";
+                LeerSiguienteCaracter();
+                if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
+                {
+                    estadoActual = "q100";
+                }
+                DevolverPuntero();
             }
-            DevolverPuntero();
         }
         private void ProcesarEstado62()
         {
@@ -991,12 +1012,15 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
                 estadoActual = "q82";
             }
 
-            LeerSiguienteCaracter();
-            if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
+            if (estadoActual.Equals("q71"))
             {
-                estadoActual = "q100";
+                LeerSiguienteCaracter();
+                if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
+                {
+                    estadoActual = "q100";
+                }
+                DevolverPuntero();
             }
-            DevolverPuntero();
         }
         private void ProcesarEstado72()
         {
@@ -1095,20 +1119,22 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
                 estadoActual = "q82";
             }
 
-            LeerSiguienteCaracter();
-            if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
+            if (estadoActual.Equals("q81"))
             {
+                LeerSiguienteCaracter();
+                if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
+                {
+                    estadoActual = "q100";
+                }
                 DevolverPuntero();
-                estadoActual = "q100";
             }
-            DevolverPuntero();
 
 
         }
         private void ProcesarEstado82()
         {
             falla = "Caracter no valido";
-            causa = "El calracter: "+caracterActual+" no esta reconocido por el sistema";
+            causa = "El caracter: "+caracterActual+" no esta reconocido por el sistema";
             solucion = "Asegurese de ingresar un caracter que sea reconocido por el sistema";
             ReportarErrorLexicoStopper();
             continuarAnalisis = false;
