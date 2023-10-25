@@ -263,7 +263,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             else if ("/".Equals(caracterActual)) { estadoActual = "q61"; }
             else if ("%".Equals(caracterActual)) { estadoActual = "q62"; }
             else if ("=".Equals(caracterActual)) { estadoActual = "q63"; }
-            else if ('\\'.Equals(caracterActual))  { estadoActual = "q64"; }
+            else if ("\\".Equals(caracterActual))  { estadoActual = "q64"; }
             else if ("|".Equals(caracterActual)) { estadoActual = "q65"; }
             else if ("\"".Equals(caracterActual))  { estadoActual = "q66"; }
             else if ("^".Equals(caracterActual)) { estadoActual = "q67"; }

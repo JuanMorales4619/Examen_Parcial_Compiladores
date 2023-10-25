@@ -207,6 +207,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
                 else if ("q91".Equals(estadoActual)) { ProcesarEstado91(); }
                 else if ("q92".Equals(estadoActual)) { ProcesarEstado92(); }
                 else if ("q93".Equals(estadoActual)) { ProcesarEstado93(); }
+                else if("q97".Equals(estadoActual)) { ProcesarEstado97(); }
                 else if ("q98".Equals(estadoActual)) { ProcesarEstado98(); }
                 else if ("q99".Equals(estadoActual)) { ProcesarEstado99(); }
                 else { ProcesarEstado82(); }
@@ -223,7 +224,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             LeerSiguienteCaracter();
             if (" ".Equals(caracterActual))
             {
-                estadoActual = "98";
+                estadoActual = "q98";
             }
             else
             {
@@ -238,8 +239,16 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
                 else if ("9".Equals(caracterActual)) { estadoActual = "q81"; }
                 else if (UtilTexto.EsFinLinea(caracterActual)) { estadoActual = "q83"; }
                 else if (UtilTexto.EsFinArchivo(caracterActual)) { estadoActual = "q84"; }
-                else { estadoActual = "q82"; }
+                else { estadoActual = "q98"; }
             }
+        }
+        private void ProcesarEstado97()
+        {
+
+            falla = "Espacio formando el numero.";
+            causa = "Se ingreso un espacio despues del caracter: "+lexema;
+            solucion = "Asegurese de no colocar espacios entre los 2 numeros que forman un caracter.";
+            ReportarErrorLexicoStopper();
         }
 
         private void ProcesarEstado0()
@@ -273,6 +282,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             else if (caracterActual.Equals("7")) { estadoActual = "q8"; }
             else if (caracterActual.Equals("8")) { estadoActual = "q9"; }
             else if (caracterActual.Equals("9")) { estadoActual = "q10"; }
+            else if (caracterActual.Equals(" ")) { estadoActual = "q97"; }
+
             else
             {
                 estadoActual = "q82";
@@ -355,6 +366,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             else if (caracterActual.Equals("7")) { estadoActual = "q18"; }
             else if (caracterActual.Equals("8")) { estadoActual = "q19"; }
             else if (caracterActual.Equals("9")) { estadoActual = "q20"; }
+            else if (caracterActual.Equals(" ")) { estadoActual = "q98"; }
+
             else
             {
                 estadoActual = "q82";
@@ -451,6 +464,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             else if (caracterActual.Equals("7")) { estadoActual = "q28"; }
             else if (caracterActual.Equals("8")) { estadoActual = "q29"; }
             else if (caracterActual.Equals("9")) { estadoActual = "q30"; }
+            else if (caracterActual.Equals(" ")) { estadoActual = "q98"; }
+
             else
             {
                 estadoActual = "q82";
@@ -542,6 +557,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             else if (caracterActual.Equals("7")) { estadoActual = "q38"; }
             else if (caracterActual.Equals("8")) { estadoActual = "q39"; }
             else if (caracterActual.Equals("9")) { estadoActual = "q40"; }
+            else if (caracterActual.Equals(" ")) { estadoActual = "q98"; }
+
             else
             {
                 estadoActual = "q82";
@@ -633,6 +650,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             else if (caracterActual.Equals("7")) { estadoActual = "q48"; }
             else if (caracterActual.Equals("8")) { estadoActual = "q49"; }
             else if (caracterActual.Equals("9")) { estadoActual = "q50"; }
+            else if (caracterActual.Equals(" ")) { estadoActual = "q98"; }
+
             else
             {
                 estadoActual = "q82";
@@ -723,6 +742,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             else if (caracterActual.Equals("7")) { estadoActual = "q58"; }
             else if (caracterActual.Equals("8")) { estadoActual = "q59"; }
             else if (caracterActual.Equals("9")) { estadoActual = "q60"; }
+            else if (caracterActual.Equals(" ")) { estadoActual = "q98"; }
+
             else
             {
                 estadoActual = "q82";
@@ -813,6 +834,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             else if (caracterActual.Equals("7")) { estadoActual = "q68"; }
             else if (caracterActual.Equals("8")) { estadoActual = "q69"; }
             else if (caracterActual.Equals("9")) { estadoActual = "q70"; }
+            else if (caracterActual.Equals(" ")) { estadoActual = "q98"; }
             else
             {
                 estadoActual = "q82";
@@ -903,6 +925,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             else if (caracterActual.Equals("7")) { estadoActual = "q78"; }
             else if (caracterActual.Equals("8")) { estadoActual = "q79"; }
             else if (caracterActual.Equals("9")) { estadoActual = "q80"; }
+            else if (caracterActual.Equals(" ")) { estadoActual = "q98"; }
+
             else
             {
                 estadoActual = "q82";
@@ -998,6 +1022,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             else if (caracterActual.Equals("7")) { estadoActual = "q91"; }
             else if (caracterActual.Equals("8")) { estadoActual = "q92"; }
             else if (caracterActual.Equals("9")) { estadoActual = "q93"; }
+            else if (caracterActual.Equals(" ")) { estadoActual = "q98"; }
+
             else
             {
                 estadoActual = "q82";
@@ -1009,7 +1035,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         {
             falla = "Caracter no valido";
             causa = "El calracter: "+caracterActual+" no esta reconocido por el sistema";
-            solucion = "Asegurese de ingresar un digito valido";
+            solucion = "Asegurese de ingresar un caracter que sea reconocido por el sistema";
             ReportarErrorLexicoStopper();
             continuarAnalisis = false;
         }
@@ -1108,14 +1134,9 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado98()
         {
-
-            /* falla = "Caracter no valido";
-             causa = "Se agrego mas de un separador espacio entre numeros";
-             solucion = "Asegurese de colocar correctamente los espacios";
-             DevorarEspaciosBlanco();
-             ReportarErrorLexicoRecuperable();*/
-            falla = "Caracter no valido";
-            causa = "Se agrego mas de un separador espacio entre numeros";
+           
+            falla = "Espaciado entre numeros no valido";
+            causa = "Se agrego mas de un separador espacio entre los numeros.";
             solucion = "Asegurese de colocar correctamente los espacios";
             ReportarErrorLexicoStopper();
 
