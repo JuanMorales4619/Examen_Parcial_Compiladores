@@ -252,15 +252,6 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             ReportarErrorLexicoStopper();
         }
 
-        private void ProcesarEstado101()
-        {
-
-            falla = "Espacio Separador de numero";
-            causa = "Se ingresaron mas de 1 espacio separador de numero " + lexema;
-            solucion = "Asegurese de no colocar mas de 1 espacio entre los numeros.";
-            ReportarErrorLexicoStopper();
-        }
-
         private void ProcesarEstado100()
         {
             Concatenar();
@@ -311,11 +302,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             {
                 estadoActual = "q100";
             }
-            /*LeerSiguienteCaracter();
-            if( !" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
-            {
-                estadoActual = "q101";
-            }*/
+            DevolverPuntero();
 
 
         }
@@ -408,6 +395,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             {
                 estadoActual = "q100";
             }
+            DevolverPuntero();
 
 
         }
@@ -512,6 +500,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             {
                 estadoActual = "q100";
             }
+            DevolverPuntero();
         }
         private void ProcesarEstado22()
         {
@@ -611,6 +600,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             {
                 estadoActual = "q100";
             }
+            DevolverPuntero();
 
         }
         private void ProcesarEstado32()
@@ -710,6 +700,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             {
                 estadoActual = "q100";
             }
+            DevolverPuntero();
         }
         private void ProcesarEstado42()
         {
@@ -808,6 +799,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             {
                 estadoActual = "q100";
             }
+            DevolverPuntero();
         }
         private void ProcesarEstado52()
         {
@@ -905,6 +897,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             {
                 estadoActual = "q100";
             }
+            DevolverPuntero();
         }
         private void ProcesarEstado62()
         {
@@ -1003,6 +996,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             {
                 estadoActual = "q100";
             }
+            DevolverPuntero();
         }
         private void ProcesarEstado72()
         {
@@ -1104,8 +1098,10 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             LeerSiguienteCaracter();
             if (!" ".Equals(caracterActual) && !"@EOF@".Equals(caracterActual) && !"@FL@".Equals(caracterActual))
             {
+                DevolverPuntero();
                 estadoActual = "q100";
             }
+            DevolverPuntero();
 
 
         }
