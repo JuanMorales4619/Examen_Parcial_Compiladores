@@ -297,6 +297,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
                 else if ("q179".Equals(estadoActual)) { ProcesarEstado179(); }
                 else if ("q180".Equals(estadoActual)) { ProcesarEstado180(); }
                 else if ("q994".Equals(estadoActual)) { ProcesarEstado994(); }
+                else if ("q1000".Equals(estadoActual)) { ProcesarEstado1000(); }
+                else if ("q1001".Equals(estadoActual)) { ProcesarEstado1001(); }
                 else { ProcesarEstado82(); }
 
 
@@ -317,12 +319,43 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Resetear();
         }
 
+        private void ProcesarEstado1000()
+        {
+            lexema = "..........";
+            LeerSiguienteCaracter();
+            if (".".Equals(caracterActual))
+            {
+                estadoActual = "q1001";
+            }
+            else
+            {
+                falla = "Concecucion de puntos no valida";
+                causa = "La consecucion de puntos: " + lexema + " no esta reconocida por el sistema";
+                solucion = "Asegurese de ingresar una consecucion de puntos valida";
+                ReportarErrorLexicoStopper();
+            }
+        }
+
+        private void ProcesarEstado1001()
+        {
+            Concatenar();
+            LeerSiguienteCaracter();
+            while (".".Equals(caracterActual))
+            {
+                Concatenar();
+                LeerSiguienteCaracter();
+            }
+            falla = "Concecucion de puntos no valida";
+            causa = "La consecucion de puntos: " + lexema + " no esta reconocida por el sistema";
+            solucion = "Asegurese de ingresar una consecucion de puntos valida";
+            ReportarErrorLexicoStopper();
+        }
 
         private void ProcesarEstado999()
         {
-            falla = "Caracter no valido";
-            causa = "El calracter: " + caracterActual + " no esta reconocido por el sistema";
-            solucion = "Asegurese de ingresar un digito valido";
+            falla = "Caracter no Reconocido por el sistema";
+            causa = "El caracter: \"" + caracterActual + "\" no esta reconocido por el sistema";
+            solucion = "Asegurese de ingresar un caracter valido";
             ReportarErrorLexicoStopper();
         }
 
@@ -336,8 +369,8 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         }
         private void ProcesarEstado994()
         {
-            falla = "Caracter no valido";
-            causa = "Se agrego un separador espacio de mas";
+            falla = "Espaciado Incorrecto";
+            causa = "El espaciado entre puntos es incorrecto";
             solucion = "Asegurese de colocar correctamente los espacios";
             ReportarErrorLexicoStopper();
         }
@@ -374,7 +407,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
 
             else
             {
-                estadoActual = "q999";
+                estadoActual = "q1000";
             }
         }
         private void ProcesarEstado2()
@@ -459,6 +492,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(" ")) { estadoActual = "q162"; }
+            else if (caracterActual.Equals(".")) { estadoActual = "q1000"; }
             else
             {
                 estadoActual = "q999";
@@ -469,6 +503,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(".")) { estadoActual = "q11"; }
+            else if(caracterActual.Equals(" ")) { estadoActual = "q994"; }
             else
             {
                 estadoActual = "q999";
@@ -575,6 +610,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(" ") || caracterActual.Equals("@FL@")) { estadoActual = "q28"; }
+            else if (caracterActual.Equals(".")) { estadoActual = "q1000";}
             else
             {
                 estadoActual = "q999";
@@ -729,6 +765,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(".")) { estadoActual = "q30"; }
+            else if (caracterActual.Equals(" ")) { estadoActual = "q994"; }
             else
             {
                 estadoActual = "q999";
@@ -835,7 +872,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         {
             Concatenar();
             LeerSiguienteCaracter();
-            if (caracterActual.Equals(".")) { estadoActual = ""; }
+            if (caracterActual.Equals(".")) { estadoActual = "q1000"; }
             else if (caracterActual.Equals(" ") || caracterActual.Equals("@FL@")) { estadoActual = "q47"; }
             else
             {
@@ -991,7 +1028,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(".")) { estadoActual = "q49"; }
-            else if (caracterActual.Equals(" ")) { estadoActual = "q58"; }
+            else if (caracterActual.Equals(" ")) { estadoActual = "q994"; }
             else
             {
                 estadoActual = "q999";
@@ -1099,6 +1136,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(" ") || caracterActual.Equals("@FL@")) { estadoActual = "q66"; }
+            else if (caracterActual.Equals(".")){ estadoActual = "q1000"; }
             else
             {
                 estadoActual = "q999";
@@ -1253,6 +1291,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(".")) { estadoActual = "q68"; }
+            else if (caracterActual.Equals(" ")) { estadoActual = "q994"; }
             else
             {
                 estadoActual = "q999";
@@ -1359,7 +1398,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
         {
             Concatenar();
             LeerSiguienteCaracter();
-            if (caracterActual.Equals(".")) { estadoActual = "q999"; }
+            if (caracterActual.Equals(".")) { estadoActual = "q1000"; }
             else if (caracterActual.Equals(" ") || caracterActual.Equals("@FL@")) { estadoActual = "q85"; }
             else
             {
@@ -1518,7 +1557,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(".")) { estadoActual = "q87"; }
-            else if (caracterActual.Equals(" ")) { estadoActual = "q85"; }
+            else if (caracterActual.Equals(" ")) { estadoActual = "q994"; }
             else
             {
                 estadoActual = "q999";
@@ -1638,6 +1677,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(" ") || caracterActual.Equals("@FL@")) { estadoActual = "q104"; }
+            else if (caracterActual.Equals(".")) { estadoActual = "q1000"; }
             else
             {
                 estadoActual = "q999";
@@ -1805,6 +1845,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(".")) { estadoActual = "q106"; }
+            else if (caracterActual.Equals(" ")) { estadoActual = "q994"; }
             else
             {
                 estadoActual = "q999";
@@ -1931,6 +1972,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(" ") || caracterActual.Equals("@FL@")) { estadoActual = "q123"; }
+            else if (caracterActual.Equals(".")) { estadoActual = "q1000"; }
             else
             {
                 estadoActual = "q999";
@@ -2105,6 +2147,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(".")) { estadoActual = "q125"; }
+            else if (caracterActual.Equals(" ")) { estadoActual = "q994"; }
             else
             {
                 estadoActual = "q999";
@@ -2231,6 +2274,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(" ") || caracterActual.Equals("@FL@")) { estadoActual = "q142"; }
+            else if (caracterActual.Equals(".")) { estadoActual = "q1000"; }
             else
             {
                 estadoActual = "q999";
@@ -2407,6 +2451,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(".")) { estadoActual = "q144"; }
+            else if (caracterActual.Equals(" ")) { estadoActual = "q994"; }
             else
             {
                 estadoActual = "q999";
@@ -2532,6 +2577,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(" ") || caracterActual.Equals("@FL@")) { estadoActual = "q161"; }
+            else if (caracterActual.Equals(".")) { estadoActual = "q1000"; }
             else
             {
                 estadoActual = "q999";
@@ -2703,6 +2749,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(".")) { estadoActual = "q163"; }
+            else if (caracterActual.Equals(" ")) { estadoActual = "q994"; }
             else
             {
                 estadoActual = "q999";
@@ -2828,6 +2875,7 @@ namespace Examen_Parcial_Compiladores.AnalizadorLexico
             Concatenar();
             LeerSiguienteCaracter();
             if (caracterActual.Equals(" ") || caracterActual.Equals("@FL@")) { estadoActual = "q180"; }
+            else if (caracterActual.Equals(".")) { estadoActual = "q1000"; }
             else
             {
                 estadoActual = "q999";
